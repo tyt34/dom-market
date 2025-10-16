@@ -1,7 +1,7 @@
+@use '@constants' as constants;
+
 .navigation {
-  background-color: rgba(154, 185, 185, 0.2);
   padding: 30px;
-  height: 100vh;
 }
 
 .navigation__description {
@@ -12,6 +12,12 @@
   margin: 0.5rem;
 
   &:hover {
-    color: rgb(34, 190, 34);
+    color: constants.$green;
   }
+}
+
+.navigation__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
