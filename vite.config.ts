@@ -1,15 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), UnoCSS()],
   resolve: {
     alias: {
       '@constants': path.resolve(
         __dirname,
         'src/assets/styles/constants.scss',
       ),
+      '@pages': path.resolve(__dirname, 'src/pages'),
     },
   },
 })

@@ -1,10 +1,10 @@
-import { navigateConfig } from './navigation.constants'
+import { navigateConfig } from './Navigation.constants'
 import { useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 
-import './navigation.scss'
+import './Navigation.style.scss'
 
-export const Navigation = () => {
+export const NavigationPage = () => {
   const navigate = useNavigate()
 
   return (

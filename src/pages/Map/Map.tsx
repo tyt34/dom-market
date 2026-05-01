@@ -1,5 +1,5 @@
-import { Header } from '../../component/header'
-import './map.style.scss'
+import { Header } from '../../component/Header'
+import './Map.style.scss'
 
 export const MapPage = () => {
   return (
