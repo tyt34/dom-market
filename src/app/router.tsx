@@ -2,7 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from './AppLayout'
 import { NavigationPage } from '@pages/Navigation'
 import { ROUTES } from './router.constants'
-import { MapPage } from '@pages/Map'
+import { ApartmentsPage } from '@pages/Apartments'
+import { ApartmentsIdPage } from '@pages/ApartmentsIdPage'
 
 export const router = createBrowserRouter([
   {
@@ -13,8 +14,12 @@ export const router = createBrowserRouter([
         element: <NavigationPage />,
       },
       {
-        path: ROUTES.MAP,
-        element: <MapPage />,
+        path: ROUTES.APARTMENTS,
+        element: <ApartmentsPage />,
+      },
+      {
+        path: `${ROUTES.APARTMENTS}/:id`,
+        element: <ApartmentsIdPage />,
       },
     ],
   },

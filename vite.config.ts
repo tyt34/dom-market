@@ -12,6 +12,7 @@ export default defineConfig({
         'src/assets/styles/constants.scss',
       ),
       '@pages': path.resolve(__dirname, 'src/pages'),
+      '@app': path.resolve(__dirname, 'src/app'),
     },
   },
 })

@@ -1,36 +1,28 @@
-import { navigateConfig } from './Navigation.constants'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { ROUTES } from '@app/router.constants'
 import Button from '@mui/material/Button'
 
 import './Navigation.style.scss'
 
 export const NavigationPage = () => {
-  const navigate = useNavigate()
-
   return (
     <section className="navigation">
       <h1>Добро пожаловать!</h1>
       <p className="navigation__description">
-        Это приложение демонстрирует несколько карт с интерактивными
-        возможностями. Вы можете открыть любую страницу и кликать по
-        объектам на карте — они будут выделяться, а рядом появится
-        информация о них.
+        Это демонстрационное приложение для покупки и продажи квартир. В
+        нём реализован базовый функционал фильтрации и просмотра
+        объявлений.
       </p>
 
       <nav className="navigation__list">
-        {navigateConfig.map((page) => (
+        <Link to={ROUTES.APARTMENTS}>
           <Button
-            key={page.title}
             variant="contained"
             className="navigation__button"
-            href={page.href}
-            onClick={() => {
-              navigate(page.navigate)
-            }}
           >
-            {page.title}
+            Список объявлений
           </Button>
-        ))}
+        </Link>
       </nav>
     </section>
   )
