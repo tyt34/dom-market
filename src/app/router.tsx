@@ -4,6 +4,7 @@ import { NavigationPage } from '@pages/Navigation'
 import { ROUTES } from './router.constants'
 import { ApartmentsPage } from '@pages/Apartments'
 import { ApartmentsIdPage } from '@pages/ApartmentsIdPage'
+import { ApartmentsLayout } from './layouts/ApartmentsLayout'
 
 export const router = createBrowserRouter([
   {
@@ -14,12 +15,17 @@ export const router = createBrowserRouter([
         element: <NavigationPage />,
       },
       {
-        path: ROUTES.APARTMENTS,
-        element: <ApartmentsPage />,
-      },
-      {
-        path: `${ROUTES.APARTMENTS}/:id`,
-        element: <ApartmentsIdPage />,
+        element: <ApartmentsLayout />,
+        children: [
+          {
+            path: ROUTES.APARTMENTS,
+            element: <ApartmentsPage />,
+          },
+          {
+            path: `${ROUTES.APARTMENTS}/:id`,
+            element: <ApartmentsIdPage />,
+          },
+        ],
       },
     ],
   },

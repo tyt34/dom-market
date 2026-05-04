@@ -29,6 +29,9 @@
       "@pages/*": [
         "./src/pages/*"
       ],
+      "@widgets/*": [
+        "./src/widgets/*"
+      ],
       "@app/*": [
         "./src/app/*"
       ]
