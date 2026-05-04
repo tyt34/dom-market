@@ -4,4 +4,13 @@ export const THEME = createTheme({
   typography: {
     fontFamily: 'Montserrat, sans-serif',
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          border: 'none',
+        },
+      },
+    },
+  },
 })

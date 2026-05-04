@@ -5,5 +5,6 @@ import './index.scss'
 import 'uno.css'
 import './shared/styles/text.scss'
 import './shared/styles/colors.scss'
+import './shared/styles/fonts.scss'
 
 createRoot(document.getElementById('root')!).render(<App />)

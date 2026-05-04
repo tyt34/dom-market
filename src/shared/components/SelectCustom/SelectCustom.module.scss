@@ -1,0 +1,35 @@
+.wrapper {
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.select {
+  height: 43px;
+  display: flex;
+  align-items: center;
+}
+
+.value {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  width: 88px;
+}
+
+.arrow {
+  padding: 13px;
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.open {
+  transform: rotate(180deg);
+}
