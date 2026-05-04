@@ -8,10 +8,16 @@ import styles from './SelectCustom.module.scss'
 interface Props {
   options: Option[]
   label: string
+  value: string
+  onChange: (value: string) => void
 }
 
-export const SelectCustom: FC<Props> = ({ options, label }) => {
-  const [value, setValue] = useState(options[0]?.value ?? '')
+export const SelectCustom: FC<Props> = ({
+  options,
+  label,
+  onChange,
+  value,
+}) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -32,14 +38,14 @@ export const SelectCustom: FC<Props> = ({ options, label }) => {
           />
         )}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         displayEmpty
         className={styles.select}
         renderValue={(selected) => {
           const current = options.find((o) => o.value === selected)
           return (
             <div className={styles.value}>
-              <span className={`${styles.label} t-13 w-600 font-s`}>
+              <span className={`${styles.label} t-13 w-400 font-s`}>
                 {label}
               </span>
               <span className={`${styles.text} t-13 font-s gray`}>
