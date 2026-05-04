@@ -1,7 +1,8 @@
 import { useEffect, useState, type FC } from 'react'
 import { Skeleton } from '@mui/material'
-import styles from './CardImages.module.scss'
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import { Favorite } from '@mui/icons-material'
+import styles from './CardImages.module.scss'
 
 interface Props {
   count: number
@@ -13,7 +14,10 @@ const SEARCH_URL =
 const OBJECT_URL =
   'https://collectionapi.metmuseum.org/public/collection/v1/objects'
 
-let cachedIds: number[] | null = null
+const cachedIds: number[] | null = null
+
+const DEV_IMAGE =
+  'https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg'
 
 const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
@@ -37,32 +41,36 @@ const fetchWithRetry = async (url: string, retries = 50) => {
   }
 }
 
+// const generateRandomMetImages = async (count: number) => {
+//   if (!cachedIds) {
+//     const res = await fetch(SEARCH_URL)
+//     const data = await res.json()
+//     cachedIds = data.objectIDs || []
+//   }
+
+//   if (!cachedIds?.length) {
+//     return []
+//   }
+
+//   const shuffled = [...cachedIds]
+//     .sort(() => Math.random() - 0.5)
+//     .slice(0, count * 2)
+
+//   const objects = await Promise.all(
+//     shuffled.map((id) =>
+//       // fetch(`${OBJECT_URL}/${id}`).then((res) => res.json()),
+//       fetchWithRetry(`${OBJECT_URL}/${id}`),
+//     ),
+//   )
+
+//   return objects
+//     .map((obj) => obj.primaryImage)
+//     .filter(Boolean)
+//     .slice(0, count)
+// }
+
 const generateRandomMetImages = async (count: number) => {
-  if (!cachedIds) {
-    const res = await fetch(SEARCH_URL)
-    const data = await res.json()
-    cachedIds = data.objectIDs || []
-  }
-
-  if (!cachedIds?.length) {
-    return []
-  }
-
-  const shuffled = [...cachedIds]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, count * 2)
-
-  const objects = await Promise.all(
-    shuffled.map((id) =>
-      // fetch(`${OBJECT_URL}/${id}`).then((res) => res.json()),
-      fetchWithRetry(`${OBJECT_URL}/${id}`),
-    ),
-  )
-
-  return objects
-    .map((obj) => obj.primaryImage)
-    .filter(Boolean)
-    .slice(0, count)
+  return Array.from({ length: count }, () => DEV_IMAGE)
 }
 
 export const CardImages: FC<Props> = ({ count }) => {
@@ -70,6 +78,11 @@ export const CardImages: FC<Props> = ({ count }) => {
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<Record<number, boolean>>({})
   const [ready, setReady] = useState(false)
+  const [favorite, setFavorite] = useState<boolean>(false)
+
+  const handleFavorite = () => {
+    setFavorite((prev) => !prev)
+  }
 
   console.log({ count })
 
@@ -125,8 +138,11 @@ export const CardImages: FC<Props> = ({ count }) => {
         </div>
 
         {ready && (
-          <div className={styles.favorite}>
-            <FavoriteBorder />
+          <div
+            className={`${styles.favorite} center`}
+            onClick={handleFavorite}
+          >
+            {favorite ? <Favorite /> : <FavoriteBorder />}
           </div>
         )}
 
