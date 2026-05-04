@@ -1,0 +1,20 @@
+.wrapper {
+  background-color: #fff;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+}
+
+.mark {
+  width: 25px;
+  height: 25px;
+}
+
+.priceAndMark {
+  display: flex;
+  justify-content: space-between;
+}

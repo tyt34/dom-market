@@ -10,16 +10,9 @@
 .main {
   position: relative;
   width: 100%;
-  height: 210px;
+  max-height: 210px;
   overflow: hidden;
   border-radius: 2px;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .arrow {
@@ -53,11 +46,9 @@
 }
 
 .thumb {
-  // width: 60px;
   height: 60px;
   object-fit: cover;
   cursor: pointer;
-  // opacity: 0.6;
   border-radius: 4px;
   width: 100%;
 }
@@ -67,14 +58,47 @@
   outline: 2px solid #000;
 }
 
-// .thumbWrapper {
-//   width: 60px;
-//   height: 40px;
-//   position: relative;
-// }
-
 .thumbWrapper {
   position: relative;
   height: 60px;
   overflow: hidden;
+}
+
+.imageArea {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.counterBadge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+
+  padding: 6px 10px;
+  border-radius: 8px;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+
+  font-size: 12px;
+  line-height: 1;
+
+  backdrop-filter: blur(6px);
+  user-select: none;
+}
+
+.favorite {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: rgba(0, 0, 0, 0.6);
 }
