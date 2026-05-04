@@ -7,7 +7,7 @@ export const ApartmentsPage = () => {
       <Filters />
 
       <CardList label="Квартиры по суперцене" />
-      {/* <CardList label="Коммерческая недвижимость" /> */}
+      <CardList label="Коммерческая недвижимость" />
     </div>
   )
 }

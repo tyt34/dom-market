@@ -12,6 +12,7 @@ interface Props {
   area: number
   floor: number
   amountFloors: number
+  kind: string
 }
 
 const formatNumber = (value: number) => {
@@ -26,6 +27,7 @@ export const Card: FC<Props> = ({
   amountRooms,
   location,
   price,
+  kind,
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -43,7 +45,8 @@ export const Card: FC<Props> = ({
         </div>
         <p className="t-13">{location}</p>
         <p className="t-13">
-          {amountRooms}-комн. · {area} м² · {floor}/{amountFloors}
+          {amountRooms}-комн. · {area} м² · {floor}/{amountFloors} ·{' '}
+          {kind}
         </p>
       </div>
     </div>
