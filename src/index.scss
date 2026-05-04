@@ -53,3 +53,14 @@ button {
   cursor: pointer;
   box-sizing: border-box;
 }
+
+/* добавить фокус инпута телефона */
+.phone-input-field:focus {
+  border-color: #424242;
+  box-shadow: 0 0 0 2px rgba(254, 254, 254, 0.47);
+  outline: 0;
+}
+
+.special-label {
+  display: none !important;
+}
