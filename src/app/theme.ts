@@ -12,6 +12,22 @@ export const THEME = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+        contained: {
+          backgroundColor: 'rgba(190, 175, 153, 1)',
+          borderRadius: '2px',
+          height: '43px',
+          color: '#fff',
+          '&:hover': {
+            // backgroundColor: '#222',
+          },
+        },
+      },
+    },
   },
   palette: {
     text: {

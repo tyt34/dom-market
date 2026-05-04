@@ -2,15 +2,32 @@ import { SelectCustom } from '@components/SelectCustom'
 import styles from './Filters.module.scss'
 import {
   OPTIONS_AREA,
+  OPTIONS_CITY,
   OPTIONS_HOME,
   OPTIONS_ROOMS,
 } from './Filters.constants'
 import { ToggleGroupCustom } from '@components/ToggleGroupCustom'
+import { Button } from '@mui/material'
+import { useState } from 'react'
 // import background from './assets/background.png'
 
 export const Filters = () => {
+  const [isAllOptions, setIsAllOptions] = useState<boolean>(false)
+
+  const handleFilter = () => {
+    setIsAllOptions(true)
+  }
+
   return (
     <div className={styles.wrapper}>
+      {isAllOptions && (
+        <SelectCustom
+          options={OPTIONS_CITY}
+          label="Город"
+          onChange={() => {}}
+          value=""
+        />
+      )}
       <SelectCustom
         options={OPTIONS_HOME}
         label="Вид"
@@ -29,6 +46,18 @@ export const Filters = () => {
         value=""
         options={OPTIONS_ROOMS}
       />
+
+      {!isAllOptions && (
+        <div className="center">
+          <button onClick={handleFilter}>
+            <span className="white w-700 t-13 underline font-s mt-[12] mb-[18]">
+              Расширенный фильтр
+            </span>
+          </button>
+        </div>
+      )}
+
+      <Button variant="contained">Показать</Button>
     </div>
   )
 }

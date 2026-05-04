@@ -38,3 +38,14 @@ export const OPTIONS_ROOMS = [
     label: '4+',
   },
 ]
+
+export const OPTIONS_CITY = [
+  {
+    value: 'vlg',
+    label: 'Волгоград',
+  },
+  {
+    value: 'spb',
+    label: 'Санкт-Петербург',
+  },
+]

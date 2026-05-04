@@ -36,3 +36,19 @@ p {
   padding-top: 4px !important;
   padding-bottom: 4px !important;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  box-sizing: border-box;
+}
