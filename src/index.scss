@@ -1,3 +1,18 @@
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
 body {
   margin: 0;
   font-family: Montserrat, sans-serif;
@@ -22,6 +37,7 @@ p {
 
   a {
     color: rgba(190, 175, 153, 1);
+    cursor: pointer;
   }
 
   a:hover {

@@ -1,0 +1,30 @@
+.wrapper {
+  padding: 0 305px;
+  background-color: rgba(210, 195, 172, 1);
+  height: 59px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  gap: 28px;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.right {
+  display: flex;
+  gap: 7px;
+}

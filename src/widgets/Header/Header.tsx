@@ -4,6 +4,9 @@ import logo from './assets/logo.svg'
 import favorite from './assets/favorite.svg'
 import favoriteFull from './assets/favorite-full.svg'
 import phone from './assets/phone.svg'
+import phone2 from './assets/phone-2.svg'
+import location from './assets/location.svg'
+import vk from './assets/vk.svg'
 import { useEffect, useState } from 'react'
 import { KEY_IMAGES } from '@shared/constants/constants'
 import { useNavigate } from 'react-router-dom'
@@ -45,7 +48,8 @@ export const Header = () => {
           src={menu}
           alt="menu"
         />
-        <div className={styles.textMenu}>
+
+        <div>
           <p className="t-6 w-600 brown">МЕНЮ</p>
         </div>
       </div>
@@ -66,7 +70,7 @@ export const Header = () => {
         <p className="t-13 w-600">Дома</p>
       </div>
 
-      <div className={styles.rightButtons}>
+      <div className={styles.rightButtonsMobile}>
         <img
           src={isFavorite ? favoriteFull : favorite}
           alt="favorite"
@@ -78,6 +82,40 @@ export const Header = () => {
           src={phone}
           alt="phone"
         />
+      </div>
+
+      <div className={styles.rightButtons}>
+        <div className={`${styles.wrapperIcon} mr-[10]`}>
+          <img
+            src={vk}
+            alt="phone"
+          />
+        </div>
+
+        <div className={`${styles.wrapperIcon} mr-[39]`}>
+          <img
+            src={phone2}
+            alt="phone"
+          />
+        </div>
+
+        <div className={`${styles.wrapperIconMini} mr-[6]`}>
+          <img
+            src={location}
+            alt="phone"
+          />
+        </div>
+
+        <span className="t-15 w-500 mr-[26]">Волгоград</span>
+
+        <div className={`${styles.wrapperIconMini} mr-[7]`}>
+          <img
+            src={phone}
+            alt="phone"
+          />
+        </div>
+
+        <span className="t-15 w-500 ">+7 (8442) 52-05-05</span>
       </div>
     </div>
   )

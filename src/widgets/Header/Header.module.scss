@@ -2,34 +2,24 @@
   height: 54px;
   display: flex;
   background-color: #fff;
-}
-
-.menu {
-  margin: 15px 0 0 34px;
-}
-
-.textMenu {
-  margin-top: -5px;
+  align-items: center;
+  padding: 0 41px 0 34px;
 }
 
 .logo {
   margin-left: 16px;
-  margin-top: 9px;
   cursor: pointer;
 }
 
 .logoText {
   margin-left: 6px;
-  margin-top: 8px;
   cursor: pointer;
 }
 
-.rightButtons {
+.rightButtonsMobile {
   display: flex;
   align-items: center;
   margin-left: auto;
-  margin-right: 41px;
-  margin-top: 14px;
   height: 22px;
   gap: 22px;
 }
@@ -37,4 +27,54 @@
 .favorite {
   height: 18px;
   cursor: pointer;
+}
+
+.rightButtons {
+  display: none;
+}
+
+@media (min-width: 1920px) {
+  .wrapper {
+    padding: 0 305px;
+    height: 89px;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .logo {
+    width: 80px;
+    height: 63px;
+  }
+
+  .rightButtonsMobile {
+    display: none;
+  }
+
+  .rightButtons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+}
+
+.wrapperIcon {
+  border-radius: 100%;
+  width: 34px;
+  height: 34px;
+  background-color: rgba(190, 175, 153, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperIconMini {
+  border-radius: 100%;
+  width: 23px;
+  height: 23px;
+  background-color: rgba(190, 175, 153, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
