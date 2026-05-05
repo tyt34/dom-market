@@ -10,7 +10,7 @@
   justify-content: center;
   width: 39px;
   height: 39px;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -18,9 +18,24 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-left: 14px;
+  // padding-left: 14px;
 }
 
 .card {
   background-color: #fff;
+  border-radius: 3px;
+}
+
+.wrapperPhone {
+  background-color: rgba(219, 154, 152, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  border-radius: 4px;
+}
+
+.buttons {
+  padding: 14px;
 }

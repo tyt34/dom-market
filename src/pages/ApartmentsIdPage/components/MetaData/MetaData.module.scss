@@ -1,0 +1,43 @@
+.wrapper {
+  background-color: #fff;
+  padding: 29px 28px;
+  display: flex;
+  // flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 8px;
+  border-radius: 3px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.wrapperImg {
+  width: 25px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.leftRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.rightRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+}
