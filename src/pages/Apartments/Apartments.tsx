@@ -9,7 +9,7 @@ export const ApartmentsPage = observer(() => {
   const { isShowList } = apartmentsStore
 
   return (
-    <div>
+    <div className="black-2">
       <Filters />
 
       <div className={styles.wrapper}>

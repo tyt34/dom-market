@@ -20,6 +20,7 @@ import { SelectCustomMobile } from '@components/SelectCustomMobile'
 import { ToggleGroupCustom } from '@components/ToggleGroupCustom'
 import { useState } from 'react'
 import type { Option } from '@shared/types/types'
+import setting from './assets/setting.svg'
 import styles from './Filters.module.scss'
 
 export const Filters = observer(() => {
@@ -201,6 +202,42 @@ export const Filters = observer(() => {
                 setAddress(value)
               }}
             />
+          </div>
+
+          <div className={`${styles.bottom} mt-[23]`}>
+            <div className={styles.bottomLeft}>
+              <Button
+                variant="contained"
+                sx={{
+                  height: '80px',
+                  width: '88px',
+                  borderRadius: '4px',
+                  backgroundColor: 'rgba(190, 175, 153, 1)',
+                }}
+              >
+                <img
+                  src={setting}
+                  alt="mark"
+                />
+              </Button>
+
+              <p className="t-18">Ещё 5 фильтров</p>
+            </div>
+
+            <div className={styles.bottomLeft}>
+              <p className="t-18">7 тыс. объявлений</p>
+              <Button
+                variant="contained"
+                sx={{
+                  height: '80px',
+                  width: '368px',
+                  borderRadius: '4px',
+                  backgroundColor: 'rgba(219, 154, 152, 1)',
+                }}
+              >
+                <p className="t-24 w-600">Показать</p>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
