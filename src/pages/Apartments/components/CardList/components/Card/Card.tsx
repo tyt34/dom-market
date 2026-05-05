@@ -1,11 +1,10 @@
-import { type FC } from 'react'
 import { CardImages } from '../../../../../../shared/components/CardImages'
-import mark from './assets/mark.svg'
-
-import styles from './Card.module.scss'
-import { useNavigate } from 'react-router-dom'
-import { ROUTES } from '@app/router.constants'
 import { formatNumber } from '@shared/utils/utils'
+import { ROUTES } from '@app/router.constants'
+import { type FC } from 'react'
+import { useNavigate } from 'react-router-dom'
+import mark from './assets/mark.svg'
+import styles from './Card.module.scss'
 
 interface Props {
   count: number

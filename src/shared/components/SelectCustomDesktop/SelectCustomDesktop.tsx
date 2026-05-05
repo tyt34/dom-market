@@ -47,6 +47,7 @@ export const SelectCustomDesktop: FC<Props> = ({
           '& .MuiSelect-select': {
             paddingLeft: '72px',
             paddingRight: '12px',
+            fontSize: '18px !important',
           },
           '& .MuiTypography-root': {
             fontSize: '30px !important',

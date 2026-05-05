@@ -1,5 +1,3 @@
-import { SelectCustomMobile } from '@components/SelectCustomMobile'
-import styles from './Filters.module.scss'
 import {
   OPTIONS_AREA,
   OPTIONS_CITY,
@@ -9,21 +7,28 @@ import {
   OPTIONS_TYPE_DEAL,
   OPTIONS_TYPE_PRICE,
   OPTIONS_SUPER,
+  OPTIONS_ADDRESS,
 } from './Filters.constants'
-import { ToggleGroupCustom } from '@components/ToggleGroupCustom'
-import { Button } from '@mui/material'
-import { useState } from 'react'
 import { apartmentsStore } from '@pages/Apartments/apartmentsStore'
-import { observer } from 'mobx-react-lite'
-import { ImageRadioGroup } from '@components/ImageRadioGroup'
-import { SelectCustomDesktop } from '@components/SelectCustomDesktop'
+import { AutocompleteCustom } from '@components/AutocompleteCustom'
+import { Button } from '@mui/material'
 import { CheckboxFilter } from '@components/CheckboxFilter'
+import { ImageRadioGroup } from '@components/ImageRadioGroup'
+import { observer } from 'mobx-react-lite'
+import { SelectCustomDesktop } from '@components/SelectCustomDesktop'
+import { SelectCustomMobile } from '@components/SelectCustomMobile'
+import { ToggleGroupCustom } from '@components/ToggleGroupCustom'
+import { useState } from 'react'
+import type { Option } from '@shared/types/types'
+import styles from './Filters.module.scss'
 
 export const Filters = observer(() => {
   const { isShowList, changeIsShowList, filters, setFilter } =
     apartmentsStore
 
   const [isAllOptions, setIsAllOptions] = useState<boolean>(false)
+
+  const [address, setAddress] = useState<Option>(OPTIONS_ADDRESS[0])
 
   const handleFilter = () => {
     setIsAllOptions(true)
@@ -184,6 +189,17 @@ export const Filters = observer(() => {
                 setFilter('super', value)
               }}
               value={filters.super === OPTIONS_SUPER[0].value}
+            />
+          </div>
+
+          <div className={`${styles.row} mt-[23]`}>
+            <AutocompleteCustom
+              options={OPTIONS_ADDRESS}
+              label="Поиск по адресу"
+              value={address}
+              onChange={(value) => {
+                setAddress(value)
+              }}
             />
           </div>
         </div>

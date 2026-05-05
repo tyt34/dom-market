@@ -147,3 +147,44 @@ export const OPTIONS_SUPER: OptionsCheckbox = [
     value: 'false',
   },
 ]
+
+export const OPTIONS_ADDRESS: Option[] = [
+  {
+    value: '',
+    label: '',
+  },
+  {
+    label: 'Волгоград, проспект Ленина 1',
+    value: 'volgograd-lenina-1',
+  },
+  {
+    label: 'Волгоград, проспект Ленина 45',
+    value: 'volgograd-lenina-45',
+  },
+  {
+    label: 'Волгоград, улица Рабоче-Крестьянская 12',
+    value: 'volgograd-raboche-krestyanskaya-12',
+  },
+  {
+    label: 'Волгоград, улица Рабоче-Крестьянская 68',
+    value: 'volgograd-raboche-krestyanskaya-68',
+  },
+  {
+    label: 'Волгоград, улица Советская 5',
+    value: 'volgograd-sovetskaya-5',
+  },
+  {
+    label: 'Волгоград, улица Советская 33',
+    value: 'volgograd-sovetskaya-33',
+  },
+  { label: 'Волгоград, улица Мира 10', value: 'volgograd-mira-10' },
+  { label: 'Волгоград, улица Мира 52', value: 'volgograd-mira-52' },
+  {
+    label: 'Волгоград, улица Комсомольская 7',
+    value: 'volgograd-komsomolskaya-7',
+  },
+  {
+    label: 'Волгоград, улица Комсомольская 41',
+    value: 'volgograd-komsomolskaya-41',
+  },
+]
