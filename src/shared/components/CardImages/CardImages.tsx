@@ -19,7 +19,7 @@ const OBJECT_URL =
 let cachedIds: number[] | null = null
 
 const DEV_IMAGE =
-  'https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg'
+  'https://www.alexkotlov.ru/uploads/gall/201009/1283623696_tn.jpg'
 
 const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))

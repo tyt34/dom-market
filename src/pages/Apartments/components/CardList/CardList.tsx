@@ -59,7 +59,9 @@ export const CardList: FC<Props> = ({ label }) => {
         </div>
       </div>
 
-      <div className={styles.cards}>
+      <div
+        className={`${mode === 'column' ? styles.cardsColumn : styles.cardsRow} `}
+      >
         {units.map((unit) => (
           <Card
             key={`${unit.Address}-${unit.Floor}-${unit.Price}`}
@@ -82,6 +84,7 @@ export const CardList: FC<Props> = ({ label }) => {
           backgroundColor: '#fff',
           boxShadow: '0px 0px 12px 0px rgba(95, 100, 168, 0.05)',
           borderRadius: '4px',
+          height: '48px',
 
           '&:hover': {
             backgroundColor: 'rgb(56, 202, 88)',
@@ -89,7 +92,8 @@ export const CardList: FC<Props> = ({ label }) => {
           },
         }}
       >
-        <span className="t-13 black">Посмотреть ещё</span>
+        {/* <span className="t-13 black">Посмотреть ещё</span> */}
+        <span className={styles.textButton}>Посмотреть ещё</span>
       </Button>
     </div>
   )

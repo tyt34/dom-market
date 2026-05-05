@@ -25,7 +25,6 @@ const randomNumber = () => {
 const count = getRandomInt(1, 8)
 
 export const Card: FC<Props> = ({
-  // count,
   amountFloors,
   floor,
   area,
@@ -33,6 +32,7 @@ export const Card: FC<Props> = ({
   location,
   price,
   kind,
+  mode, // ← достаём
 }) => {
   const navigate = useNavigate()
   const handleClick = () => {
@@ -40,19 +40,17 @@ export const Card: FC<Props> = ({
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${styles[mode]}`}>
       <CardImages
         count={count}
         isFavorite
       />
-
       <div
         className={styles.bottom}
         onClick={handleClick}
       >
         <div className={styles.priceAndMark}>
           <p className="w-600 t-25">{formatNumber(price)} ₽</p>
-
           <img
             src={mark}
             className={styles.mark}

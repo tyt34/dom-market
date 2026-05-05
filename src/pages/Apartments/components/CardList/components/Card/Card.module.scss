@@ -1,5 +1,21 @@
 .wrapper {
   background-color: #fff;
+
+  /* column — поведение по умолчанию, ничего дополнительного не нужно */
+
+  /* row — горизонтальная карточка */
+  &.row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    // Картинка фиксированной ширины слева
+    :global(.card-images), // замени на реальный селектор/класс CardImages
+    & > *:first-child {
+      width: 220px;
+      flex-shrink: 0;
+    }
+  }
 }
 
 .bottom {
@@ -8,6 +24,12 @@
   gap: 8px;
   padding: 24px;
   cursor: pointer;
+
+  // В строчном режиме bottom занимает оставшееся место
+  .row & {
+    flex: 1;
+    justify-content: center;
+  }
 }
 
 .mark {
