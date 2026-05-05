@@ -1,10 +1,20 @@
-import { Button, Checkbox, TextField } from '@mui/material'
+import {
+  Button,
+  Checkbox,
+  InputAdornment,
+  TextField,
+  useMediaQuery,
+} from '@mui/material'
 import styles from './CallMe.module.scss'
 import { PhoneField } from '@components/PhoneField'
 import { INPUT_STYLES } from '@shared/styles/styles'
 import { Link } from 'react-router-dom'
+import { THEME } from '@app/theme'
+import user from './assets/user.svg'
 
 export const CallMe = () => {
+  const isDesktop = useMediaQuery(THEME.breakpoints.up('md'))
+
   return (
     <div className={styles.wrapper}>
       <p className="black-2 t-23 w-500">
@@ -17,11 +27,23 @@ export const CallMe = () => {
           variant="outlined"
           fullWidth
           sx={INPUT_STYLES}
+          InputProps={{
+            startAdornment: isDesktop ? (
+              <InputAdornment position="start">
+                <img
+                  className="ml-[10]"
+                  src={user}
+                  // className={styles.mark}
+                  alt="mark"
+                />
+              </InputAdornment>
+            ) : null,
+          }}
         />
 
         <PhoneField />
 
-        <label className={styles.label}>
+        <label className={styles.labelMobile}>
           <div className={styles.checkboxWrapper}>
             <Checkbox />
           </div>
@@ -34,13 +56,29 @@ export const CallMe = () => {
         <Button
           variant="contained"
           sx={{
-            height: '63px',
+            height: {
+              xs: '63px',
+              xl: '80px',
+            },
             borderRadius: '4px',
+            width: {
+              xl: '100%',
+            },
           }}
         >
           Перезвоните мне
         </Button>
       </div>
+
+      <label className={styles.labelDesktop}>
+        <div className={styles.checkboxWrapper}>
+          <Checkbox />
+        </div>
+        <p className="black-2 t-9 w-500">
+          Оставляя свои персональные данные, Вы даете добровольное
+          согласие на их обработку. <Link to={''}>Подробнее</Link>
+        </p>
+      </label>
     </div>
   )
 }

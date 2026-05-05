@@ -1,7 +1,9 @@
 import { IMaskInput } from 'react-imask'
 import { forwardRef } from 'react'
-import { TextField } from '@mui/material'
+import { InputAdornment, TextField, useMediaQuery } from '@mui/material'
 import { INPUT_STYLES } from '@shared/styles/styles'
+import { THEME } from '@app/theme'
+import phone from './assets/phone.svg'
 
 const PhoneMask = forwardRef<HTMLInputElement, any>(
   function PhoneMask(props, ref) {
@@ -21,6 +23,8 @@ const PhoneMask = forwardRef<HTMLInputElement, any>(
 )
 
 export const PhoneField = () => {
+  const isDesktop = useMediaQuery(THEME.breakpoints.up('md'))
+
   return (
     <TextField
       fullWidth
@@ -28,6 +32,16 @@ export const PhoneField = () => {
       onChange={() => {}}
       InputProps={{
         inputComponent: PhoneMask as any,
+        startAdornment: isDesktop ? (
+          <InputAdornment position="start">
+            <img
+              className="ml-[10]"
+              src={phone}
+              // className={styles.mark}
+              alt="mark"
+            />
+          </InputAdornment>
+        ) : null,
       }}
       sx={INPUT_STYLES}
     />

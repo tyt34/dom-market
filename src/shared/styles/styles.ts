@@ -2,7 +2,12 @@ export const INPUT_STYLES = {
   '& .MuiOutlinedInput-root': {
     backgroundColor: 'rgba(245, 244, 241, 1)', // фон инпута
     borderRadius: '4px',
-    height: '60px',
+    // height: '60px',
+
+    height: {
+      xs: '60px',
+      xl: '80px',
+    },
 
     '& fieldset': {
       borderColor: 'transparent',
@@ -19,7 +24,10 @@ export const INPUT_STYLES = {
 
   '& .MuiOutlinedInput-input': {
     padding: '12px 19px',
-    fontSize: '14px',
+    fontSize: {
+      xs: '14px',
+      xl: '18px',
+    },
   },
 
   '& .MuiInputLabel-root.Mui-focused': {

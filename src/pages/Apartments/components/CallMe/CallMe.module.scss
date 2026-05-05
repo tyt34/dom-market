@@ -11,7 +11,7 @@
   margin-top: 14px;
 }
 
-.label {
+.labelMobile {
   display: flex;
   align-self: start;
 }
@@ -20,4 +20,37 @@
   // padding-top: -10px;
   position: relative;
   top: -10px;
+}
+
+.labelDesktop {
+  display: none;
+}
+
+@media (min-width: 1920px) {
+  .wrapper {
+    margin-bottom: 95px;
+    margin-top: 56px;
+    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+  }
+
+  .labelMobile {
+    display: none;
+  }
+
+  .inputs {
+    flex-direction: row;
+  }
+
+  .labelDesktop {
+    display: flex;
+    align-items: center;
+    // margin-top: 32px;
+  }
+
+  .checkboxWrapper {
+    top: 0;
+  }
 }
