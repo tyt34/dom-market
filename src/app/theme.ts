@@ -12,6 +12,19 @@ export const THEME = createTheme({
         },
       },
     },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          // color: '#9e9e9e', // обычное состояние
+          '&.Mui-checked': {
+            color: 'rgba(190, 175, 153, 1)', // цвет при checked
+          },
+          '& .MuiSvgIcon-root': {
+            // fontSize: 18, // дефолт ~24, уменьшаем галочку
+          },
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {

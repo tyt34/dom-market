@@ -9,13 +9,21 @@ import {
 import { ToggleGroupCustom } from '@components/ToggleGroupCustom'
 import { Button } from '@mui/material'
 import { useState } from 'react'
+import { apartmentsStore } from '@pages/Apartments/apartmentsStore'
+import { observer } from 'mobx-react-lite'
 // import background from './assets/background.png'
 
-export const Filters = () => {
+export const Filters = observer(() => {
+  const { isShowList, changeIsShowList } = apartmentsStore
+
   const [isAllOptions, setIsAllOptions] = useState<boolean>(false)
 
   const handleFilter = () => {
     setIsAllOptions(true)
+  }
+
+  const handleShowList = () => {
+    changeIsShowList(!isShowList)
   }
 
   return (
@@ -57,7 +65,12 @@ export const Filters = () => {
         </div>
       )}
 
-      <Button variant="contained">Показать</Button>
+      <Button
+        variant="contained"
+        onClick={handleShowList}
+      >
+        {isShowList ? 'Скрыть' : 'Показать'}
+      </Button>
     </div>
   )
-}
+})

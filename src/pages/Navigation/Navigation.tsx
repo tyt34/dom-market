@@ -14,7 +14,7 @@ export const NavigationPage = () => {
         объявлений.
       </p>
 
-      <nav className="navigation__list">
+      <nav className="navigation__list mt-[20]">
         <Link to={ROUTES.APARTMENTS}>
           <Button
             variant="contained"

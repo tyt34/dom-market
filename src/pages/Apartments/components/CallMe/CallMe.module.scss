@@ -1,6 +1,7 @@
 .wrapper {
   background-color: #fff;
   padding: 31px 19px 33px 19px;
+  margin-top: 12px;
 }
 
 .inputs {
@@ -8,4 +9,15 @@
   flex-direction: column;
   gap: 14px;
   margin-top: 14px;
+}
+
+.label {
+  display: flex;
+  align-self: start;
+}
+
+.checkboxWrapper {
+  // padding-top: -10px;
+  position: relative;
+  top: -10px;
 }

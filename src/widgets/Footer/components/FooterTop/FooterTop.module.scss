@@ -1,0 +1,32 @@
+.wrapper {
+  background-color: rgba(190, 175, 153, 1);
+  padding: 20px 42px;
+}
+
+.line {
+  display: flex;
+  align-self: center;
+  // flex-direction: row;
+}
+
+.sb {
+  justify-content: space-between;
+}
+
+.location {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+
+// .address {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+.addresses {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}

@@ -1,38 +1,53 @@
-// primary
-// .font-p {
-//   font-family: Montserrat, sans-serif;
-// }
-
-// secondary
+// Fonts
 .font-s {
   font-family:
     Proxima Nova,
     sans-serif;
 }
 
+//  Font Size
+
+.t-6 {
+  font-size: 6px;
+}
+
+.t-7 {
+  font-size: 7px;
+}
+
+.t-9 {
+  font-size: 9px;
+}
+
 .t-10 {
   font-size: 10px;
 }
 
-.t-6 {
-  font-size: 6px;
+.t-12 {
+  font-size: 12px;
 }
 
 .t-13 {
   font-size: 13px;
 }
 
+.t-14 {
+  font-size: 14px;
+}
+
 .t-19 {
   font-size: 19px;
+}
+
+.t-23 {
+  font-size: 23px;
 }
 
 .t-25 {
   font-size: 25px;
 }
 
-.t-23 {
-  font-size: 23px;
-}
+// Font Weight
 
 .w-400 {
   font-weight: 400;
@@ -49,6 +64,8 @@
 .w-700 {
   font-weight: 600;
 }
+
+// Other
 
 .underline {
   text-decoration: underline;
