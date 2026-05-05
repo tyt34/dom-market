@@ -100,8 +100,6 @@ export const CardImages: FC<Props> = ({
     setFavorite((prev) => !prev)
   }
 
-  console.log({ count, modeRandom })
-
   useEffect(() => {
     const load = async () => {
       setImages([])
@@ -144,7 +142,7 @@ export const CardImages: FC<Props> = ({
 
           {images.map((src, i) => (
             <img
-              key={src}
+              key={`${src}-${i}`}
               src={src}
               className={styles.image}
               style={{

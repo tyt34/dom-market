@@ -3,8 +3,9 @@ import { Card } from './components/Card'
 import { Button } from '@mui/material'
 import type { CardResponse } from '@shared/api/getData/getCard.types'
 import { getCard } from '@shared/api/getData/getCard'
-import { getRandomInt } from '@shared/utils/utils'
 import styles from './CardList.module.scss'
+
+import { CardListMode } from './components/CardListMode'
 
 interface Props {
   label: string
@@ -12,39 +13,68 @@ interface Props {
 
 export const CardList: FC<Props> = ({ label }) => {
   const [units, setUnits] = useState<CardResponse[]>([])
+  const [mode, setMode] = useState<'row' | 'column'>('column')
 
-  const fetchCard = async () => {
-    const data = await getCard()
+  const isDesktop = window.matchMedia('(min-width: 1920px)').matches
+
+  const fetchCards = async (count: number) => {
+    const requests = Array.from({ length: count }).map(() => getCard())
+    const results = await Promise.all(requests)
 
     setUnits((state) => {
-      return [...state, data]
+      return [...state, ...results]
     })
   }
 
   useEffect(() => {
-    fetchCard()
-  }, [])
+    const count = isDesktop ? 4 : 1
+    fetchCards(count)
+  }, [isDesktop])
 
-  const handleClick = () => {
-    fetchCard()
+  const handleClick = async () => {
+    const count = isDesktop ? 4 : 1
+    const requests = Array.from({ length: count }).map(() => getCard())
+    const results = await Promise.all(requests)
+
+    setUnits((state) => {
+      return [...state, ...results]
+    })
+  }
+
+  const handleMode = () => {
+    setMode((state) => {
+      return state === 'row' ? 'column' : 'row'
+    })
   }
 
   return (
     <div className={styles.wrapper}>
-      <span className="rose w-500 t-19">{label}</span>
-      {units.map((unit) => (
-        <Card
-          key={`${unit.Address}-${unit.Floor}-${unit.Price}`}
-          count={getRandomInt(1, 8)}
-          amountFloors={unit.FloorsTotal}
-          amountRooms={unit.RoomsCount}
-          area={unit.SqTotal}
-          floor={unit.Floor}
-          location={unit.Address}
-          price={unit.Price}
-          kind={unit.Type}
-        />
-      ))}
+      <div className={styles.top}>
+        <span className="rose w-500 t-19">{label}</span>
+        <div className={styles.buttons}>
+          <CardListMode
+            mode={mode}
+            handleClick={handleMode}
+          />
+        </div>
+      </div>
+
+      <div className={styles.cards}>
+        {units.map((unit) => (
+          <Card
+            key={`${unit.Address}-${unit.Floor}-${unit.Price}`}
+            amountFloors={unit.FloorsTotal}
+            amountRooms={unit.RoomsCount}
+            area={unit.SqTotal}
+            floor={unit.Floor}
+            location={unit.Address}
+            price={unit.Price}
+            kind={unit.Type}
+            mode={mode}
+          />
+        ))}
+      </div>
+
       <Button
         onClick={handleClick}
         variant="contained"

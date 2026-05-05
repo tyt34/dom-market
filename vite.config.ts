@@ -2,9 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import UnoCSS from 'unocss/vite'
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
-  plugins: [react(), UnoCSS()],
+  plugins: [react(), UnoCSS(), svgr()],
   resolve: {
     alias: {
       '@constants': path.resolve(

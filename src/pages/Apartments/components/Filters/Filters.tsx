@@ -234,8 +234,11 @@ export const Filters = observer(() => {
                   borderRadius: '4px',
                   backgroundColor: 'rgba(219, 154, 152, 1)',
                 }}
+                onClick={handleShowList}
               >
-                <p className="t-24 w-600">Показать</p>
+                <p className="t-24 w-600">
+                  {isShowList ? 'Скрыть' : 'Показать'}
+                </p>
               </Button>
             </div>
           </div>

@@ -16,7 +16,6 @@ export const CheckboxFilter: FC<Props> = ({ value, onChange }) => {
         <Checkbox
           checked={value}
           onChange={(e) => {
-            console.log({ v: e.target.checked })
             onChange(`${e.target.checked}`)
           }}
           sx={{

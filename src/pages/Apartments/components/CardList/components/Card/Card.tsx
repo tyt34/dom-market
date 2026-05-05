@@ -1,5 +1,5 @@
 import { CardImages } from '../../../../../../shared/components/CardImages'
-import { formatNumber } from '@shared/utils/utils'
+import { formatNumber, getRandomInt } from '@shared/utils/utils'
 import { ROUTES } from '@app/router.constants'
 import { type FC } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -7,7 +7,7 @@ import mark from './assets/mark.svg'
 import styles from './Card.module.scss'
 
 interface Props {
-  count: number
+  // count: number
   price: number
   location: string
   amountRooms: number
@@ -15,14 +15,17 @@ interface Props {
   floor: number
   amountFloors: number
   kind: string
+  mode: 'row' | 'column'
 }
 
 const randomNumber = () => {
   return Math.floor(Math.random() * 100000) + 1
 }
 
+const count = getRandomInt(1, 8)
+
 export const Card: FC<Props> = ({
-  count,
+  // count,
   amountFloors,
   floor,
   area,

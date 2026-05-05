@@ -45,8 +45,6 @@ export async function makeApiRequest<
 
   while (attempt <= retries) {
     try {
-      console.log('request attempt:', attempt)
-
       const response = await axios({
         method,
         url,
@@ -61,13 +59,10 @@ export async function makeApiRequest<
       const error = err as AxiosError
 
       if (attempt === retries) {
-        console.log('final fail')
         throw error
       }
 
       attempt += 1
-
-      console.log('retrying...', attempt)
 
       await sleep(retryDelay * attempt)
     }

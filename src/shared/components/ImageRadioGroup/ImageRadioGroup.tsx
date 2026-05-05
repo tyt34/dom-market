@@ -14,7 +14,6 @@ export const ImageRadioGroup: FC<Props> = ({
   onChange,
 }) => {
   const handleChange = (value: string) => {
-    console.log({ value })
     onChange(value)
   }
 

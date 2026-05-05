@@ -4,3 +4,31 @@
   flex-direction: column;
   gap: 15px;
 }
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: none;
+}
+
+@media (min-width: 1920px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+  }
+}
