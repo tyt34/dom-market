@@ -15,6 +15,8 @@ interface ApiRequestOptions<TData = unknown, TParams = unknown> {
   config?: {
     skipErrorHandler?: boolean
     headers?: Record<string, string>
+    retries?: number
+    retryDelay?: number
 
     // Другие кастомные параметры конфига
   }
@@ -33,28 +35,49 @@ export async function makeApiRequest<
 >(options: ApiRequestOptions<TData, TParams>): Promise<R> {
   const { method = 'get', url, data, params, config = {} } = options
 
-  try {
-    let headers = config.headers || {}
+  const {
+    retries = 10,
+    retryDelay = 1000,
+    headers: customHeaders = {},
+  } = config
 
-    if (method !== 'get') {
-      headers = { ...headers }
+  let attempt = 0
+
+  while (attempt <= retries) {
+    try {
+      console.log('request attempt:', attempt)
+
+      const response = await axios({
+        method,
+        url,
+        data,
+        params,
+        withCredentials: false,
+        headers: customHeaders,
+      })
+
+      return response.data
+    } catch (err) {
+      const error = err as AxiosError
+
+      if (attempt === retries) {
+        console.log('final fail')
+        throw error
+      }
+
+      attempt += 1
+
+      console.log('retrying...', attempt)
+
+      await sleep(retryDelay * attempt)
     }
-
-    // Основной запрос
-    const response = await axios({
-      method,
-      url,
-      data,
-      params,
-      withCredentials: false,
-      headers,
-      ...config,
-    })
-
-    return response.data
-  } catch (err) {
-    const error = err as AxiosError<{ message: string }>
-
-    throw error
   }
+
+  throw new Error('Unreachable')
+}
+
+const sleep = (ms: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms)
+  })
 }

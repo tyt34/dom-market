@@ -7,6 +7,7 @@ import rooms from './assets/rooms.svg'
 import floor from './assets/floor.svg'
 import typeHouse from './assets/type.svg'
 import { getRandomInt } from '@shared/utils/utils'
+import { Skeleton } from '@mui/material'
 
 interface Props {
   data: CardResponse | null
@@ -73,20 +74,58 @@ export const MetaData: FC<Props> = ({ data }) => {
       </div>
 
       <div className={styles.rightRow}>
-        <p className="black-2 t-16 w-500">
-          {getRandomInt(data?.SqTotal ?? 0, (data?.SqTotal ?? 0) + 50)}{' '}
-          м²
-        </p>
+        {data ? (
+          <p className="black-2 t-16 w-500">
+            {getRandomInt(
+              data?.SqTotal ?? 0,
+              (data?.SqTotal ?? 0) + 50,
+            )}{' '}
+            м²
+          </p>
+        ) : (
+          <Skeleton
+            width={80}
+            height={16}
+          />
+        )}
 
-        <p className="black-2 t-16 w-500">{data?.SqTotal} м²</p>
+        {data ? (
+          <p className="black-2 t-16 w-500">{data?.SqTotal} м²</p>
+        ) : (
+          <Skeleton
+            width={80}
+            height={16}
+          />
+        )}
 
-        <p className="black-2 t-16 w-500">{data?.RoomsCount} </p>
+        {data ? (
+          <p className="black-2 t-16 w-500">{data?.RoomsCount} </p>
+        ) : (
+          <Skeleton
+            width={80}
+            height={16}
+          />
+        )}
 
-        <p className="black-2 t-16 w-500">
-          {data?.Floor}/{data?.FloorsTotal}
-        </p>
+        {data ? (
+          <p className="black-2 t-16 w-500">
+            {data?.Floor}/{data?.FloorsTotal}
+          </p>
+        ) : (
+          <Skeleton
+            width={80}
+            height={16}
+          />
+        )}
 
-        <p className="black-2 t-16 w-500">{data?.Type} </p>
+        {data ? (
+          <p className="black-2 t-16 w-500">{data?.Type} </p>
+        ) : (
+          <Skeleton
+            width={80}
+            height={16}
+          />
+        )}
       </div>
     </div>
   )

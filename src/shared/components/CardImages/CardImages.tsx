@@ -3,6 +3,7 @@ import { Skeleton } from '@mui/material'
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
 import { Favorite } from '@mui/icons-material'
 import styles from './CardImages.module.scss'
+import { KEY_IMAGES } from '@shared/constants/constants'
 
 interface Props {
   count: number
@@ -15,7 +16,7 @@ const SEARCH_URL =
 const OBJECT_URL =
   'https://collectionapi.metmuseum.org/public/collection/v1/objects'
 
-const cachedIds: number[] | null = null
+let cachedIds: number[] | null = null
 
 const DEV_IMAGE =
   'https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg'
@@ -42,35 +43,35 @@ const fetchWithRetry = async (url: string, retries = 50) => {
   }
 }
 
-// const generateRandomMetImages = async (count: number) => {
-//   if (!cachedIds) {
-//     const res = await fetch(SEARCH_URL)
-//     const data = await res.json()
-//     cachedIds = data.objectIDs || []
-//   }
-
-//   if (!cachedIds?.length) {
-//     return []
-//   }
-
-//   const shuffled = [...cachedIds]
-//     .sort(() => Math.random() - 0.5)
-//     .slice(0, count * 2)
-
-//   const objects = await Promise.all(
-//     shuffled.map((id) =>
-//       // fetch(`${OBJECT_URL}/${id}`).then((res) => res.json()),
-//       fetchWithRetry(`${OBJECT_URL}/${id}`),
-//     ),
-//   )
-
-//   return objects
-//     .map((obj) => obj.primaryImage)
-//     .filter(Boolean)
-//     .slice(0, count)
-// }
-
 const generateRandomMetImages = async (count: number) => {
+  if (!cachedIds) {
+    const res = await fetch(SEARCH_URL)
+    const data = await res.json()
+    cachedIds = data.objectIDs || []
+  }
+
+  if (!cachedIds?.length) {
+    return []
+  }
+
+  const shuffled = [...cachedIds]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, count * 2)
+
+  const objects = await Promise.all(
+    shuffled.map((id) =>
+      // fetch(`${OBJECT_URL}/${id}`).then((res) => res.json()),
+      fetchWithRetry(`${OBJECT_URL}/${id}`),
+    ),
+  )
+
+  return objects
+    .map((obj) => obj.primaryImage)
+    .filter(Boolean)
+    .slice(0, count)
+}
+
+const setSavedImage = async (count: number) => {
   return Array.from({ length: count }, () => DEV_IMAGE)
 }
 
@@ -83,19 +84,32 @@ export const CardImages: FC<Props> = ({
   const [loaded, setLoaded] = useState<Record<number, boolean>>({})
   const [ready, setReady] = useState(false)
   const [favorite, setFavorite] = useState<boolean>(false)
+  const [modeRandom, setModeRandom] = useState<boolean>(false)
+
+  useEffect(() => {
+    const stored = localStorage.getItem(KEY_IMAGES)
+
+    if (stored === 'true') {
+      setModeRandom(true)
+    } else {
+      setModeRandom(false)
+    }
+  }, [])
 
   const handleFavorite = () => {
     setFavorite((prev) => !prev)
   }
 
-  console.log({ count })
+  console.log({ count, modeRandom })
 
   useEffect(() => {
     const load = async () => {
       setImages([])
       setLoaded({})
       setActive(0)
-      const imgs = await generateRandomMetImages(count)
+      const imgs = modeRandom
+        ? await generateRandomMetImages(count)
+        : await setSavedImage(count)
       setImages(imgs)
       if (!ready) {
         setReady(true)
@@ -103,7 +117,7 @@ export const CardImages: FC<Props> = ({
     }
     load()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [count])
+  }, [count, modeRandom])
 
   const handleLoad = (index: number) => {
     setLoaded((prev) => ({ ...prev, [index]: true }))
@@ -224,8 +238,25 @@ export const CardImages: FC<Props> = ({
               </div>
             ))}
 
-            <div className={`${styles.thumbWrapper} center`}>
+            {/* <div className={`${styles.thumbWrapper} center`}>
               <div className="center">+{count - 2} фото</div>
+            </div> */}
+
+            <div className={styles.thumbWrapper}>
+              {images[2] && (
+                <div className={styles.thumbOverlayWrapper}>
+                  <img
+                    src={images[2]}
+                    className={styles.thumb}
+                    onLoad={() => handleLoad(2)}
+                    onClick={() => setActive(2)}
+                  />
+
+                  <div className={`${styles.overlay} center`}>
+                    Еще фото
+                  </div>
+                </div>
+              )}
             </div>
           </>
         )}

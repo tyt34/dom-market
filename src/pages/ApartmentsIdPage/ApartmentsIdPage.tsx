@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button, Skeleton } from '@mui/material'
 import { CardImages } from '@components/CardImages'
 import { formatNumber, getRandomInt } from '@shared/utils/utils'
 import { getCard } from '@shared/api/getData/getCard'
@@ -51,8 +51,17 @@ export const ApartmentsIdPage = () => {
               />
             </div>
 
-            <p className="w-600 t-19 black-2">
-              {formatNumber(data?.Price ?? 0)} ₽
+            <p className="w-600 t-19">
+              {/* {formatNumber(data?.Price ?? 0)} ₽ */}
+
+              {data ? (
+                `${formatNumber(data.Price)} ₽`
+              ) : (
+                <Skeleton
+                  width={80}
+                  height={19}
+                />
+              )}
             </p>
           </div>
 
@@ -64,7 +73,14 @@ export const ApartmentsIdPage = () => {
               />
             </div>
 
-            <p className="w-600 t-19 black-2"> 8 (927) 512 05 05</p>
+            {data ? (
+              <p className="w-600 t-19"> 8 (927) 512 05 05</p>
+            ) : (
+              <Skeleton
+                width={80}
+                height={19}
+              />
+            )}
           </div>
 
           <Button

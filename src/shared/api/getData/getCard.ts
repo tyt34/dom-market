@@ -12,6 +12,10 @@ export const getCard = async (params?: any) => {
       method: 'get',
       url: API.GET_DATA,
       params,
+      config: {
+        retries: 10,
+        retryDelay: 1000,
+      },
     })
     return response
   } catch (err) {
