@@ -1,6 +1,7 @@
 .wrapper {
   background-color: #fff;
   border-radius: 2px;
+  width: 100%;
 }
 
 .select {
@@ -11,14 +12,13 @@
 
 .value {
   display: flex;
-  // justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 100%;
 }
 
 .label {
-  width: 88px;
+  width: 100px;
 }
 
 .arrow {
@@ -33,3 +33,13 @@
 .open {
   transform: rotate(180deg);
 }
+
+// @media (min-width: 1920px) {
+//   .select {
+//     height: 80px;
+//   }
+
+//   .label {
+//     display: none;
+//   }
+// }

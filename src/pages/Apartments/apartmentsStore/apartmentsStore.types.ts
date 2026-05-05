@@ -3,4 +3,7 @@ export type FiltersState = {
   homeType: string
   area: string
   rooms: string
+  deal: string
+  price: string
+  super: string
 }

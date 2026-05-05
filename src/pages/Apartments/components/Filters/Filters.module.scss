@@ -1,8 +1,5 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
   padding: 39px 39px 25px 39px;
-  gap: 8px;
   background-image: url('./assets/background.png');
   background-size: cover;
   background-position: center;
@@ -21,4 +18,39 @@
 .wrapper > * {
   position: relative;
   z-index: 1;
+}
+
+.filterMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.filterDesktop {
+  display: none;
+}
+
+@media (min-width: 1920px) {
+  .filterMobile {
+    display: none;
+  }
+
+  .filterDesktop {
+    display: block;
+  }
+
+  .wrapper::before {
+    background: rgba(190, 175, 153, 0.5);
+  }
+
+  .wrapper {
+    padding: 48px 305px 40px 305px;
+    gap: 16px;
+  }
+
+  .row {
+    display: flex;
+    gap: 24px;
+  }
 }

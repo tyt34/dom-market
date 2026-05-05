@@ -3,7 +3,7 @@ import { useState, type FC } from 'react'
 import type { Option } from '@shared/types/types'
 import arrow from './assets/arrow.svg'
 
-import styles from './SelectCustom.module.scss'
+import styles from './SelectCustomMobile.module.scss'
 
 interface Props {
   options: Option[]
@@ -12,7 +12,7 @@ interface Props {
   onChange: (value: string) => void
 }
 
-export const SelectCustom: FC<Props> = ({
+export const SelectCustomMobile: FC<Props> = ({
   options,
   label,
   onChange,

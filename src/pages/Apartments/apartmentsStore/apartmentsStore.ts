@@ -6,7 +6,6 @@ class ApartmentsStore {
   /** true - список квартир отображается */
   isShowList: boolean = false
 
-  // filters: FiltersState = FILTERS_INIT
   filters: FiltersState = getFiltersFromUrl()
 
   constructor() {
@@ -65,14 +64,15 @@ class ApartmentsStore {
     this.filters[key] = value
   }
 
-  resetFilters = () => {
-    this.filters = {
-      city: '',
-      homeType: '',
-      area: '',
-      rooms: '',
-    }
-  }
+  // resetFilters = () => {
+  //   this.filters = {
+  //     city: '',
+  //     homeType: '',
+  //     area: '',
+  //     rooms: '',
+  //     deal:
+  //   }
+  // }
 }
 
 export const apartmentsStore = new ApartmentsStore()

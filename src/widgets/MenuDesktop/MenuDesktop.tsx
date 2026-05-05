@@ -1,11 +1,32 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './MenuDesktop.module.scss'
 import favorite from './assets/favorite.svg'
 import favoriteFull from './assets/favorite-full.svg'
 import { Button } from '@mui/material'
+import { KEY_IMAGES } from '@shared/constants/constants'
 
 export const MenuDesktop = () => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
+
+  const handleFavorite = () => {
+    setIsFavorite((prev) => {
+      const next = !prev
+
+      localStorage.setItem(KEY_IMAGES, String(next))
+
+      return next
+    })
+  }
+
+  useEffect(() => {
+    const stored = localStorage.getItem(KEY_IMAGES)
+
+    if (stored === 'true') {
+      setIsFavorite(true)
+    } else {
+      setIsFavorite(false)
+    }
+  }, [])
 
   return (
     <div className={styles.wrapper}>
@@ -23,7 +44,7 @@ export const MenuDesktop = () => {
       <div className={styles.right}>
         <div
           className={styles.favorite}
-          onClick={() => setIsFavorite((prev) => !prev)}
+          onClick={handleFavorite}
         >
           <img
             src={isFavorite ? favoriteFull : favorite}
