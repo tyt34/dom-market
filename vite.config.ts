@@ -16,6 +16,7 @@ export default defineConfig({
       '@widgets': path.resolve(__dirname, 'src/widgets'),
       '@components': path.resolve(__dirname, 'src/shared/components'),
       '@shared': path.resolve(__dirname, 'src/shared/'),
+      '@api': path.resolve(__dirname, 'src/api/'),
     },
   },
 })

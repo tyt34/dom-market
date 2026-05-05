@@ -1,9 +1,9 @@
+import { apartmentsStore } from './apartmentsStore'
 import { CallMe } from './components/CallMe'
 import { CardList } from './components/CardList'
 import { Filters } from './components/Filters'
-import styles from './Apartments.module.scss'
 import { observer } from 'mobx-react-lite'
-import { apartmentsStore } from './apartmentsStore'
+import styles from './Apartments.module.scss'
 
 export const ApartmentsPage = observer(() => {
   const { isShowList } = apartmentsStore

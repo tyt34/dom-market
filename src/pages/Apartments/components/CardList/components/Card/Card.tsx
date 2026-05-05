@@ -1,8 +1,11 @@
 import { type FC } from 'react'
-import { CardImages } from './components/CardImages'
+import { CardImages } from '../../../../../../shared/components/CardImages'
 import mark from './assets/mark.svg'
 
 import styles from './Card.module.scss'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '@app/router.constants'
+import { formatNumber } from '@shared/utils/utils'
 
 interface Props {
   count: number
@@ -15,8 +18,8 @@ interface Props {
   kind: string
 }
 
-const formatNumber = (value: number) => {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+const randomNumber = () => {
+  return Math.floor(Math.random() * 100000) + 1
 }
 
 export const Card: FC<Props> = ({
@@ -29,11 +32,22 @@ export const Card: FC<Props> = ({
   price,
   kind,
 }) => {
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate(`${ROUTES.APARTMENTS}/${randomNumber()}`)
+  }
+
   return (
     <div className={styles.wrapper}>
-      <CardImages count={count} />
+      <CardImages
+        count={count}
+        isFavorite
+      />
 
-      <div className={styles.bottom}>
+      <div
+        className={styles.bottom}
+        onClick={handleClick}
+      >
         <div className={styles.priceAndMark}>
           <p className="w-600 t-25">{formatNumber(price)} ₽</p>
 

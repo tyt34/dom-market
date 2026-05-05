@@ -8,7 +8,7 @@ export const FooterTop = () => {
   return (
     <div className={`${styles.wrapper} white`}>
       <p className="t-23 w-500">Контакты</p>
-      <p className="t-24 w-600 mt-[8]">
+      <div className="t-24 w-600 mt-[8]">
         <div className={styles.line}>
           <img
             className="mr-[8] ml-[5]"
@@ -19,7 +19,8 @@ export const FooterTop = () => {
             8 (8442) 52-05-05, 8 (927) 512-05-05
           </span>
         </div>
-      </p>
+      </div>
+
       <div className={`${styles.line} ${styles.sb}`}>
         <div className={`${styles.line} mt-[6]`}>
           <img
@@ -41,6 +42,7 @@ export const FooterTop = () => {
           </span>
         </div>
       </div>
+
       <div className={styles.addresses}>
         <div className={styles.location}>
           <img
@@ -56,6 +58,7 @@ export const FooterTop = () => {
             </p>
           </div>
         </div>
+
         <div className={styles.location}>
           <img
             src={location}
@@ -70,6 +73,7 @@ export const FooterTop = () => {
             </p>
           </div>
         </div>
+
         <div className={styles.location}>
           <img
             src={location}
@@ -95,5 +99,3 @@ export const FooterTop = () => {
     </div>
   )
 }
-
-//

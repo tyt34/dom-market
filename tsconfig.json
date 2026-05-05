@@ -40,6 +40,9 @@
       ],
       "@shared/*": [
         "./src/shared/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
       ]
     }
   },

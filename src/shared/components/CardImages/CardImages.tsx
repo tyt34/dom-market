@@ -6,6 +6,7 @@ import styles from './CardImages.module.scss'
 
 interface Props {
   count: number
+  isFavorite?: boolean
 }
 
 const SEARCH_URL =
@@ -73,7 +74,10 @@ const generateRandomMetImages = async (count: number) => {
   return Array.from({ length: count }, () => DEV_IMAGE)
 }
 
-export const CardImages: FC<Props> = ({ count }) => {
+export const CardImages: FC<Props> = ({
+  count,
+  isFavorite = false,
+}) => {
   const [images, setImages] = useState<string[]>([])
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<Record<number, boolean>>({})
@@ -137,7 +141,7 @@ export const CardImages: FC<Props> = ({ count }) => {
           ))}
         </div>
 
-        {ready && (
+        {ready && isFavorite && (
           <div
             className={`${styles.favorite} center`}
             onClick={handleFavorite}

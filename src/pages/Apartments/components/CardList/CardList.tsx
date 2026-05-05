@@ -1,51 +1,32 @@
 import { useEffect, useState, type FC } from 'react'
-import styles from './CardList.module.scss'
 import { Card } from './components/Card'
 import { Button } from '@mui/material'
+import type { CardResponse } from '@shared/api/getData/getCard.types'
+import { getCard } from '@shared/api/getData/getCard'
+import { getRandomInt } from '@shared/utils/utils'
+import styles from './CardList.module.scss'
 
 interface Props {
   label: string
 }
 
-interface UnitApi {
-  Price: number
-  Address: string
-  RoomsCount: number
-  SqTotal: number
-  Floor: number
-  FloorsTotal: number
-  Type: string
-}
-
-const randomCount = () => Math.floor(Math.random() * 8) + 1
-
 export const CardList: FC<Props> = ({ label }) => {
-  const [units, setUnits] = useState<UnitApi[]>([])
+  const [units, setUnits] = useState<CardResponse[]>([])
 
-  const fetchUnits = async () => {
-    try {
-      const res = await fetch(
-        'https://jivemdoma.space/api/v1/frontend-test/catalog/units/rand',
-      )
+  const fetchCard = async () => {
+    const data = await getCard()
 
-      if (res.ok) {
-        const data: UnitApi = await res.json()
-
-        setUnits((state) => {
-          return [...state, data]
-        })
-      }
-    } catch (e) {
-      console.error(e)
-    }
+    setUnits((state) => {
+      return [...state, data]
+    })
   }
 
   useEffect(() => {
-    fetchUnits()
+    fetchCard()
   }, [])
 
   const handleClick = () => {
-    fetchUnits()
+    fetchCard()
   }
 
   return (
@@ -54,7 +35,7 @@ export const CardList: FC<Props> = ({ label }) => {
       {units.map((unit) => (
         <Card
           key={`${unit.Address}-${unit.Floor}-${unit.Price}`}
-          count={randomCount()}
+          count={getRandomInt(1, 8)}
           amountFloors={unit.FloorsTotal}
           amountRooms={unit.RoomsCount}
           area={unit.SqTotal}
