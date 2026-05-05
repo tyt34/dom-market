@@ -11,10 +11,10 @@ import { Button } from '@mui/material'
 import { useState } from 'react'
 import { apartmentsStore } from '@pages/Apartments/apartmentsStore'
 import { observer } from 'mobx-react-lite'
-// import background from './assets/background.png'
 
 export const Filters = observer(() => {
-  const { isShowList, changeIsShowList } = apartmentsStore
+  const { isShowList, changeIsShowList, filters, setFilter } =
+    apartmentsStore
 
   const [isAllOptions, setIsAllOptions] = useState<boolean>(false)
 
@@ -32,27 +32,35 @@ export const Filters = observer(() => {
         <SelectCustom
           options={OPTIONS_CITY}
           label="Город"
-          onChange={() => {}}
-          value=""
+          onChange={(value) => {
+            setFilter('city', value)
+          }}
+          value={filters.city}
         />
       )}
       <SelectCustom
         options={OPTIONS_HOME}
         label="Вид"
-        onChange={() => {}}
-        value=""
+        onChange={(value) => {
+          setFilter('homeType', value)
+        }}
+        value={filters.homeType}
       />
       <SelectCustom
         options={OPTIONS_AREA}
         label="Район"
-        onChange={() => {}}
-        value=""
+        value={filters.area}
+        onChange={(value) => {
+          setFilter('area', value)
+        }}
       />
       <ToggleGroupCustom
         label="Комнаты"
-        onChange={() => {}}
-        value=""
         options={OPTIONS_ROOMS}
+        onChange={(value) => {
+          setFilter('rooms', value)
+        }}
+        value={filters.rooms}
       />
 
       {!isAllOptions && (

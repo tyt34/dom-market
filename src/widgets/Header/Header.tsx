@@ -6,8 +6,12 @@ import favoriteFull from './assets/favorite-full.svg'
 import phone from './assets/phone.svg'
 import { useEffect, useState } from 'react'
 import { KEY_IMAGES } from '@shared/constants/constants'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '@app/router.constants'
 
 export const Header = () => {
+  const navigate = useNavigate()
+
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
   const handleFavorite = () => {
@@ -18,6 +22,10 @@ export const Header = () => {
 
       return next
     })
+  }
+
+  const handleClick = () => {
+    navigate(ROUTES.APARTMENTS)
   }
 
   useEffect(() => {
@@ -42,7 +50,7 @@ export const Header = () => {
         </div>
       </div>
 
-      <div>
+      <div onClick={handleClick}>
         <img
           className={styles.logo}
           src={logo}
@@ -50,10 +58,14 @@ export const Header = () => {
         />
       </div>
 
-      <div className={styles.logoText}>
+      <div
+        className={styles.logoText}
+        onClick={handleClick}
+      >
         <p className="t-10 w-400">Живем</p>
         <p className="t-13 w-600">Дома</p>
       </div>
+
       <div className={styles.rightButtons}>
         <img
           src={isFavorite ? favoriteFull : favorite}
