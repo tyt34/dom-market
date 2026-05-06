@@ -12,6 +12,7 @@
   height: 39px;
   border-radius: 4px;
   cursor: pointer;
+  transform-origin: center;
 }
 
 .line {
@@ -98,6 +99,7 @@
     min-width: 64px;
     height: 64px;
     border-radius: 4px;
+    transform-origin: center;
 
     img {
       scale: 1.5;

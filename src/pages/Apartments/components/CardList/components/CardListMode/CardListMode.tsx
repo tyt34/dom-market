@@ -10,8 +10,6 @@ interface Props {
 }
 
 export const CardListMode: FC<Props> = ({ handleClick, mode }) => {
-  console.log({ mode })
-
   const isColumn = mode === 'column'
   const isRow = mode === 'row'
 

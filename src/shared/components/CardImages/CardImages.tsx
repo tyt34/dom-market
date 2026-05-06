@@ -30,8 +30,6 @@ export const CardImages: FC<Props> = ({
 
   const { isDesktop } = useBreakpoints()
 
-  console.log({ isDesktop })
-
   useEffect(() => {
     const stored = localStorage.getItem(KEY_IMAGES)
 

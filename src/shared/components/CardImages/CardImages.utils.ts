@@ -1,5 +1,5 @@
 import {
-  DEV_IMAGE,
+  DEV_IMAGES,
   OBJECT_URL,
   SEARCH_URL,
 } from './CardImages.constants'
@@ -56,6 +56,13 @@ export const generateRandomMetImages = async (count: number) => {
     .slice(0, count)
 }
 
+// export const setSavedImage = async (count: number) => {
+//   return Array.from({ length: count }, () => DEV_IMAGE)
+// }
+
 export const setSavedImage = async (count: number) => {
-  return Array.from({ length: count }, () => DEV_IMAGE)
+  return Array.from({ length: count }, () => {
+    const randomIndex = Math.floor(Math.random() * DEV_IMAGES.length)
+    return DEV_IMAGES[randomIndex]
+  })
 }

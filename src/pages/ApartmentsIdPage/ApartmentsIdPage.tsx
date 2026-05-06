@@ -11,14 +11,13 @@ import type { CardResponse } from '@shared/api/getData/getCard.types'
 import styles from './ApartmentsIdPage.module.scss'
 import { DataDescription } from './components/DataDescription'
 import { CardLocation } from './components/CardLocation'
+import { motion } from 'framer-motion'
 
 const randomNumber = getRandomInt(1, 8)
 
 export const ApartmentsIdPage = () => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
   const [data, setData] = useState<CardResponse | null>(null)
-
-  console.log({ data })
 
   const fetchCard = async () => {
     const data = await getCard()
@@ -52,7 +51,7 @@ export const ApartmentsIdPage = () => {
 
         <div className={styles.buttons}>
           <div className={`${styles.lineReverse} mt-[10]`}>
-            <div
+            {/* <div
               className={styles.wrapperImg}
               onClick={handleFavorite}
             >
@@ -60,7 +59,24 @@ export const ApartmentsIdPage = () => {
                 src={isFavorite ? favoriteFull : favorite}
                 alt="favorite"
               />
-            </div>
+            </div> */}
+
+            <motion.div
+              className={styles.wrapperImg}
+              onClick={handleFavorite}
+              whileTap={{ scale: 0.8 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 400,
+                damping: 20,
+              }}
+            >
+              <img
+                src={isFavorite ? favoriteFull : favorite}
+                alt="favorite"
+              />
+            </motion.div>
 
             <div>
               <p className="w-600 t-19-35">

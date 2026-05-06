@@ -1,7 +1,7 @@
 import { CardImages } from '../../../../../../shared/components/CardImages'
 import { formatNumber, getRandomInt } from '@shared/utils/utils'
 import { ROUTES } from '@app/router.constants'
-import { type FC } from 'react'
+import { useRef, type FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import mark from './assets/mark.svg'
 import styles from './Card.module.scss'
@@ -22,7 +22,7 @@ const randomNumber = () => {
   return Math.floor(Math.random() * 100000) + 1
 }
 
-const count = getRandomInt(1, 8)
+// const count = getRandomInt(1, 8)
 
 export const Card: FC<Props> = ({
   amountFloors,
@@ -32,8 +32,11 @@ export const Card: FC<Props> = ({
   location,
   price,
   kind,
-  mode, // ← достаём
+  mode,
 }) => {
+  const countRef = useRef(getRandomInt(1, 8))
+  const count = countRef.current
+
   const navigate = useNavigate()
   const handleClick = () => {
     navigate(`${ROUTES.APARTMENTS}/${randomNumber()}`)

@@ -1,11 +1,12 @@
 import { useEffect, useState, type FC } from 'react'
 import { Card } from './components/Card'
-import { Button } from '@mui/material'
+import { Button, Skeleton } from '@mui/material'
 import type { CardResponse } from '@shared/api/getData/getCard.types'
 import { getCard } from '@shared/api/getData/getCard'
 import styles from './CardList.module.scss'
 
 import { CardListMode } from './components/CardListMode'
+import { useBreakpoints } from '@shared/hooks/useBreakpoints'
 
 interface Props {
   label: string
@@ -14,31 +15,44 @@ interface Props {
 export const CardList: FC<Props> = ({ label }) => {
   const [units, setUnits] = useState<CardResponse[]>([])
   const [mode, setMode] = useState<'row' | 'column'>('column')
+  const [loading, setLoading] = useState(false)
+  const [loadingMore, setLoadingMore] = useState(false)
 
-  const isDesktop = window.matchMedia('(min-width: 1920px)').matches
+  const { isDesktop } = useBreakpoints()
 
-  const fetchCards = async (count: number) => {
-    const requests = Array.from({ length: count }).map(() => getCard())
-    const results = await Promise.all(requests)
+  const fetchCards = async (
+    count: number,
+    mode: 'initial' | 'more',
+  ) => {
+    if (mode === 'initial') {
+      setLoading(true)
+    } else {
+      setLoadingMore(true)
+    }
 
-    setUnits((state) => {
-      return [...state, ...results]
-    })
+    await new Promise(requestAnimationFrame)
+
+    try {
+      const requests = Array.from({ length: count }).map(() =>
+        getCard(),
+      )
+      const results = await Promise.all(requests)
+
+      setUnits((state) => [...state, ...results])
+    } finally {
+      setLoading(false)
+      setLoadingMore(false)
+    }
   }
 
   useEffect(() => {
     const count = isDesktop ? 4 : 1
-    fetchCards(count)
+    fetchCards(count, 'initial')
   }, [isDesktop])
 
-  const handleClick = async () => {
+  const handleClick = () => {
     const count = isDesktop ? 4 : 1
-    const requests = Array.from({ length: count }).map(() => getCard())
-    const results = await Promise.all(requests)
-
-    setUnits((state) => {
-      return [...state, ...results]
-    })
+    fetchCards(count, 'more')
   }
 
   const handleMode = () => {
@@ -62,19 +76,39 @@ export const CardList: FC<Props> = ({ label }) => {
       <div
         className={`${mode === 'column' ? styles.cardsColumn : styles.cardsRow} `}
       >
-        {units.map((unit) => (
-          <Card
-            key={`${unit.Address}-${unit.Floor}-${unit.Price}`}
-            amountFloors={unit.FloorsTotal}
-            amountRooms={unit.RoomsCount}
-            area={unit.SqTotal}
-            floor={unit.Floor}
-            location={unit.Address}
-            price={unit.Price}
-            kind={unit.Type}
-            mode={mode}
-          />
-        ))}
+        {loading && units.length === 0
+          ? Array.from({ length: isDesktop ? 4 : 1 }).map((_, i) => (
+              <Skeleton
+                key={i}
+                variant="rectangular"
+                height={mode === 'column' ? 564 : 278}
+                sx={{
+                  borderRadius: 2,
+                }}
+              />
+            ))
+          : units.map((unit) => (
+              <Card
+                key={`${unit.Address}-${unit.Floor}-${unit.Price}`}
+                amountFloors={unit.FloorsTotal}
+                amountRooms={unit.RoomsCount}
+                area={unit.SqTotal}
+                floor={unit.Floor}
+                location={unit.Address}
+                price={unit.Price}
+                kind={unit.Type}
+                mode={mode}
+              />
+            ))}
+
+        {loadingMore &&
+          Array.from({ length: isDesktop ? 4 : 1 }).map((_, i) => (
+            <Skeleton
+              key={`more-${i}`}
+              variant="rectangular"
+              height={mode === 'column' ? 564 : 278}
+            />
+          ))}
       </div>
 
       <Button

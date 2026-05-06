@@ -19,7 +19,6 @@ class ApartmentsStore {
     reaction(
       () => ({ ...this.filters }),
       (filters) => {
-        console.log({ a: window.location.pathname })
         if (window.location.pathname !== ROUTES.APARTMENTS) {
           return
         }
@@ -33,7 +32,6 @@ class ApartmentsStore {
         })
 
         const newUrl = `${window.location.pathname}?${params.toString()}`
-        console.log({ newUrl })
 
         window.history.replaceState(null, '', newUrl)
       },
@@ -59,8 +57,6 @@ class ApartmentsStore {
       })
 
       const newUrl = `${window.location.pathname}?${newParams.toString()}`
-
-      console.log({ newUrl })
 
       window.history.replaceState(null, '', newUrl)
     }
