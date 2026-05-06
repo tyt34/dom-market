@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Веб-приложение каталога квартир с фильтрацией и карточками объектов
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![](https://shields.io/badge/-HTML-orange) 
+![](https://shields.io/badge/-ReactJS-05D9FF)
+![](https://shields.io/badge/-TypeScript-2D79C7)
+![](https://shields.io/badge/-MobX-ea6618)
+![](https://shields.io/badge/-MaterialUI-0061c2)
+![](https://shields.io/badge/-Framer_Motion-fff312)
 
-Currently, two official plugins are available:
+## Описание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Веб-приложение каталога квартир. Приложение представляет собой список объектов недвижимости с возможностью просмотра детальной карточки каждого объекта. Данные для каталога получаются с *backend-API*, при этом *API* возвращает случайные значения, поэтому контент носит демонстрационный характер и не содержит реальных данных.
 
-## React Compiler
+Приложение поддерживает адаптивную верстку для мобильных и десктопных устройств.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Функциональность
 
-## Expanding the ESLint configuration
+Приложение позволяет:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Просматривать каталог квартир с возможностью перехода в детальную карточку объекта  
+- Использовать систему фильтров для поиска и отбора квартир  
+- Работа с фильтрами
+- - Используются различные *UI*-компоненты фильтрации: селекты, текстовые инпуты, инпут для ввода номера телефона, `ImageRadioGroup`, `ToggleGroup`
+- - Фильтры синхронизированы с адресной строкой (`query params`)
+- - При загрузке страницы состояние фильтров восстанавливается из *URL* и применяется автоматически
+- Работа с каталогом
+- - Данные получаются с *backend-API*, которое возвращает случайные значения, поэтому контент носит демонстрационный характер
+- - В карточках отображается набор изображений:
+- - - количество изображений варьируется от 1 до 8
+- - - изображения выбираются случайным образом из массива (10 изображений)
+- - Геопозиция объекта генерируется случайным образом в пределах окрестностей города Вологоград
+- - Для отображения карты используется *Google Maps* через `iframe`
+- Визуальная часть и анимации
+- - Используется библиотека *Framer Motion* для анимаций интерфейса
+- - Реализованы анимации:
+- - - открытия фильтров в мобильной версии
+- - - смены изображений в карточке
+- - - взаимодействия с иконкой избранного (*favorites*)
+- Адаптивность
+- - Приложение адаптировано под мобильные и десктопные устройства
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Дополнительные особенности реализации
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Система типографики
+- - Размеры текста реализованы через набор утилитарных классов `.t-*` (например: `t-12`, `t-16`, `t-24`)
+- - Начертание шрифта управляется классами `.w-400`, `.w-500`, `.w-600`, `.w-700`
+- Адаптивная типографика
+- - Для экранов с шириной от `1920px` и выше используется отдельное переопределение размеров шрифтов через `media query`
+- Утилитарная система стилей (*UnoCSS*)
+- - Реализованы собственные правила для динамической генерации *CSS*-свойств: ширина и высота (`px`, `%`), внутренние и внешние отступы (`padding`/`margin`), `gap` между элементами и скругление углов через утилитарные классы вида `w-[N]`, `h-[N]`, `p-[N]`, `m-[N]`, `g-[N]`, `br-[N]`
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+<tr>
+    <hr>
+</tr>
+
+## Запуск приложения
+
+Для запуска приложения необходим:
+- `nodejs >=20.19.5` 
+- `npm >=11.7.0`
+
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+npm i
+npm run start
 ```
