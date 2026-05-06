@@ -1,5 +1,5 @@
 {
-  "name": "openlayers",
+  "name": "dom-market",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "start": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
