@@ -1,12 +1,24 @@
 .wrapper {
   background-color: rgba(190, 175, 153, 1);
   padding: 20px 42px;
+  display: flex;
+  flex-direction: column;
 }
 
 .line {
   display: flex;
   align-self: center;
-  // flex-direction: row;
+}
+
+.firstPhone {
+  display: flex;
+  align-self: center;
+}
+
+.linePhonesMobile {
+  display: flex;
+  align-self: center;
+  gap: 4px;
 }
 
 .sb {
@@ -19,14 +31,125 @@
   gap: 8px;
 }
 
-// .address {
-//   display: flex;
-//   flex-direction: column;
-// }
-
 .addresses {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-top: 14px;
+}
+
+.contacts {
+  margin-left: 22px;
+}
+
+.text {
+  margin-left: 5px;
+}
+
+.iconPhone {
+  margin-right: 8px;
+  margin-left: 5px;
+}
+
+.iconWhatsapp {
+  margin-right: 4px;
+}
+
+.iconMail {
+  margin-right: 4px;
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.linePhonesDesktop {
+  display: none;
+}
+
+.iframe {
+  margin-top: 12px;
+}
+
+@media (min-width: 1920px) {
+  .top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .line {
+    flex-direction: column;
+  }
+
+  .iconPhone {
+    width: 14px;
+    height: 14px;
+  }
+
+  .iconWhatsapp {
+    width: 34px;
+    height: 34px;
+    margin-right: 0;
+    position: relative;
+    right: 6px;
+  }
+
+  .iconMail {
+    width: 18px;
+    height: 14px;
+    margin-right: 0;
+  }
+
+  .linePhonesMobile {
+    display: none;
+  }
+
+  .empty {
+    width: 14px;
+    height: 14px;
+  }
+
+  .linePhonesDesktop {
+    display: flex;
+  }
+
+  .phones {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rightSide {
+    margin-top: 0;
+    span {
+      font-size: 20px;
+    }
+    display: grid;
+    grid-template-columns: 50px 1fr;
+  }
+
+  .wrapper {
+    padding: 23px 305px;
+    display: grid;
+    grid-template-columns: 1fr 389px;
+    gap: 56px;
+  }
+
+  .iframe {
+    margin-top: 0;
+    border-radius: 4px;
+  }
+
+  .addresses {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .text {
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
