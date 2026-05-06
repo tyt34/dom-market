@@ -8,3 +8,31 @@
   display: flex;
   justify-content: space-between;
 }
+
+.mobile {
+  display: block;
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 1920px) {
+  .wrapper {
+    padding: 10px 305px;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
