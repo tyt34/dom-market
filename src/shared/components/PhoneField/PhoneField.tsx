@@ -1,9 +1,9 @@
-import { IMaskInput } from 'react-imask'
 import { forwardRef } from 'react'
-import { InputAdornment, TextField, useMediaQuery } from '@mui/material'
-import { INPUT_STYLES } from '@shared/styles/styles'
-import { THEME } from '@app/theme'
+import { IMaskInput } from 'react-imask'
+import { InputAdornment, TextField } from '@mui/material'
+import { useBreakpoints } from '@shared/hooks/useBreakpoints'
 import phone from './assets/phone.svg'
+import { INPUT_STYLES } from '@shared/styles/styles'
 
 const PhoneMask = forwardRef<HTMLInputElement, any>(
   function PhoneMask(props, ref) {
@@ -23,7 +23,7 @@ const PhoneMask = forwardRef<HTMLInputElement, any>(
 )
 
 export const PhoneField = () => {
-  const isDesktop = useMediaQuery(THEME.breakpoints.up('md'))
+  const { isDesktop } = useBreakpoints()
 
   return (
     <TextField

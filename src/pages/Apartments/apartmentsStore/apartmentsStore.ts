@@ -1,6 +1,7 @@
 import { makeAutoObservable, reaction } from 'mobx'
 import type { FiltersState } from './apartmentsStore.types'
 import { getFiltersFromUrl } from './apartmentsStore.utils'
+import { ROUTES } from '@app/router.constants'
 
 class ApartmentsStore {
   /** true - список квартир отображается */
@@ -18,6 +19,11 @@ class ApartmentsStore {
     reaction(
       () => ({ ...this.filters }),
       (filters) => {
+        console.log({ a: window.location.pathname })
+        if (window.location.pathname !== ROUTES.APARTMENTS) {
+          return
+        }
+
         const params = new URLSearchParams()
 
         Object.entries(filters).forEach(([key, value]) => {
@@ -27,6 +33,7 @@ class ApartmentsStore {
         })
 
         const newUrl = `${window.location.pathname}?${params.toString()}`
+        console.log({ newUrl })
 
         window.history.replaceState(null, '', newUrl)
       },
@@ -34,6 +41,10 @@ class ApartmentsStore {
   }
 
   initInitialUrlSync() {
+    if (window.location.pathname !== ROUTES.APARTMENTS) {
+      return
+    }
+
     const params = new URLSearchParams(window.location.search)
 
     const hasAnyParams = Array.from(params.keys()).length > 0
@@ -48,6 +59,8 @@ class ApartmentsStore {
       })
 
       const newUrl = `${window.location.pathname}?${newParams.toString()}`
+
+      console.log({ newUrl })
 
       window.history.replaceState(null, '', newUrl)
     }

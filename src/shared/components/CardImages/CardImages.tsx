@@ -1,90 +1,36 @@
-import { useEffect, useState, type FC } from 'react'
-import { Skeleton } from '@mui/material'
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import {
+  generateRandomMetImages,
+  setSavedImage,
+} from './CardImages.utils'
 import { Favorite } from '@mui/icons-material'
-import styles from './CardImages.module.scss'
 import { KEY_IMAGES } from '@shared/constants/constants'
+import { Skeleton } from '@mui/material'
+import { useBreakpoints } from '@shared/hooks/useBreakpoints'
+import { useEffect, useState, type FC } from 'react'
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import styles from './CardImages.module.scss'
 
 interface Props {
   count: number
   isFavorite?: boolean
-}
-
-const SEARCH_URL =
-  'https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=*'
-
-const OBJECT_URL =
-  'https://collectionapi.metmuseum.org/public/collection/v1/objects'
-
-let cachedIds: number[] | null = null
-
-const DEV_IMAGE =
-  'https://www.alexkotlov.ru/uploads/gall/201009/1283623696_tn.jpg'
-
-const sleep = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms))
-
-const fetchWithRetry = async (url: string, retries = 50) => {
-  try {
-    const res = await fetch(url)
-
-    if (!res.ok) {
-      throw new Error('Request failed')
-    }
-
-    return await res.json()
-  } catch (e) {
-    if (retries > 0) {
-      await sleep(3000)
-      return fetchWithRetry(url, retries - 1)
-    }
-
-    return e
-  }
-}
-
-const generateRandomMetImages = async (count: number) => {
-  if (!cachedIds) {
-    const res = await fetch(SEARCH_URL)
-    const data = await res.json()
-    cachedIds = data.objectIDs || []
-  }
-
-  if (!cachedIds?.length) {
-    return []
-  }
-
-  const shuffled = [...cachedIds]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, count * 2)
-
-  const objects = await Promise.all(
-    shuffled.map((id) =>
-      // fetch(`${OBJECT_URL}/${id}`).then((res) => res.json()),
-      fetchWithRetry(`${OBJECT_URL}/${id}`),
-    ),
-  )
-
-  return objects
-    .map((obj) => obj.primaryImage)
-    .filter(Boolean)
-    .slice(0, count)
-}
-
-const setSavedImage = async (count: number) => {
-  return Array.from({ length: count }, () => DEV_IMAGE)
+  isOnly?: boolean
 }
 
 export const CardImages: FC<Props> = ({
   count,
   isFavorite = false,
+  isOnly = false,
 }) => {
-  const [images, setImages] = useState<string[]>([])
   const [active, setActive] = useState(0)
-  const [loaded, setLoaded] = useState<Record<number, boolean>>({})
-  const [ready, setReady] = useState(false)
   const [favorite, setFavorite] = useState<boolean>(false)
+  const [images, setImages] = useState<string[]>([])
+  const [loaded, setLoaded] = useState<Record<number, boolean>>({})
   const [modeRandom, setModeRandom] = useState<boolean>(false)
+  const [ready, setReady] = useState(false)
+
+  const { isDesktop } = useBreakpoints()
+
+  console.log({ isDesktop })
 
   useEffect(() => {
     const stored = localStorage.getItem(KEY_IMAGES)
@@ -128,9 +74,21 @@ export const CardImages: FC<Props> = ({
     setActive((p) => (p === images.length - 1 ? 0 : p + 1))
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.main}>
-        <div className={styles.imageArea}>
+    <div
+      className={
+        isDesktop && isOnly ? styles.wrapperOnly : styles.wrapper
+      }
+    >
+      <div
+        className={isDesktop && isOnly ? styles.mainOnly : styles.main}
+      >
+        <div
+          className={
+            isDesktop && isOnly
+              ? styles.imageAreaOnly
+              : styles.imageArea
+          }
+        >
           {!loaded[active] && (
             <Skeleton
               variant="rectangular"
@@ -187,12 +145,20 @@ export const CardImages: FC<Props> = ({
         )}
       </div>
 
-      <div className={styles.thumbs}>
+      <div
+        className={
+          isDesktop && isOnly ? styles.thumbsOnly : styles.thumbs
+        }
+      >
         {!ready ? (
           Array.from({ length: 3 }).map((_, i) => (
             <div
               key={i}
-              className={styles.thumbWrapper}
+              className={
+                isDesktop && isOnly
+                  ? styles.thumbWrapperOnly
+                  : styles.thumbWrapper
+              }
             >
               <Skeleton
                 variant="rectangular"
@@ -206,12 +172,20 @@ export const CardImages: FC<Props> = ({
           images.map((img, i) => (
             <div
               key={i}
-              className={styles.thumbWrapper}
+              className={
+                isDesktop && isOnly
+                  ? styles.thumbWrapperOnly
+                  : styles.thumbWrapper
+              }
             >
               {img && (
                 <img
                   src={img}
-                  className={styles.thumb}
+                  className={
+                    isDesktop && isOnly
+                      ? styles.thumbOnly
+                      : styles.thumb
+                  }
                   onLoad={() => handleLoad(i)}
                   onClick={() => setActive(i)}
                 />
@@ -223,12 +197,20 @@ export const CardImages: FC<Props> = ({
             {[0, 1].map((i) => (
               <div
                 key={i}
-                className={styles.thumbWrapper}
+                className={
+                  isDesktop && isOnly
+                    ? styles.thumbWrapperOnly
+                    : styles.thumbWrapper
+                }
               >
                 {images[i] && (
                   <img
                     src={images[i]}
-                    className={styles.thumb}
+                    className={
+                      isDesktop && isOnly
+                        ? styles.thumbOnly
+                        : styles.thumb
+                    }
                     onLoad={() => handleLoad(i)}
                     onClick={() => setActive(i)}
                   />
@@ -236,16 +218,22 @@ export const CardImages: FC<Props> = ({
               </div>
             ))}
 
-            {/* <div className={`${styles.thumbWrapper} center`}>
-              <div className="center">+{count - 2} фото</div>
-            </div> */}
-
-            <div className={styles.thumbWrapper}>
+            <div
+              className={
+                isDesktop && isOnly
+                  ? styles.thumbWrapperOnly
+                  : styles.thumbWrapper
+              }
+            >
               {images[2] && (
                 <div className={styles.thumbOverlayWrapper}>
                   <img
                     src={images[2]}
-                    className={styles.thumb}
+                    className={
+                      isDesktop && isOnly
+                        ? styles.thumbOnly
+                        : styles.thumb
+                    }
                     onLoad={() => handleLoad(2)}
                     onClick={() => setActive(2)}
                   />

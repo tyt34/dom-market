@@ -3,17 +3,16 @@ import {
   Checkbox,
   InputAdornment,
   TextField,
-  useMediaQuery,
 } from '@mui/material'
-import styles from './CallMe.module.scss'
-import { PhoneField } from '@components/PhoneField'
-import { INPUT_STYLES } from '@shared/styles/styles'
 import { Link } from 'react-router-dom'
-import { THEME } from '@app/theme'
+import { PhoneField } from '@components/PhoneField'
+import { useBreakpoints } from '@shared/hooks/useBreakpoints'
 import user from './assets/user.svg'
+import styles from './CallMe.module.scss'
+import { INPUT_STYLES } from '@shared/styles/styles'
 
 export const CallMe = () => {
-  const isDesktop = useMediaQuery(THEME.breakpoints.up('md'))
+  const { isDesktop } = useBreakpoints()
 
   return (
     <div className={styles.wrapper}>

@@ -82,16 +82,12 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
-
   padding: 6px 10px;
   border-radius: 8px;
-
   background: rgba(0, 0, 0, 0.6);
   color: white;
-
   font-size: 12px;
   line-height: 1;
-
   backdrop-filter: blur(6px);
   user-select: none;
 }
@@ -117,4 +113,51 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+@media (min-width: 1920px) {
+  .wrapperOnly {
+    display: flex;
+    width: 780px;
+    gap: 12px;
+    background-color: #fff;
+  }
+
+  .thumbsOnly {
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    gap: 12px;
+    justify-content: space-between;
+  }
+
+  .mainOnly {
+    max-height: 440px;
+    width: 593px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .imageAreaOnly {
+    height: 440px;
+    border-radius: 4px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .thumbOnly {
+    height: 139px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .thumbWrapperOnly {
+    height: 139px;
+    position: relative;
+    overflow: hidden;
+  }
 }

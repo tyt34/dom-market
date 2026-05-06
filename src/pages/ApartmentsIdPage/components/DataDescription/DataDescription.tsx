@@ -1,11 +1,16 @@
+import { useBreakpoints } from '@shared/hooks/useBreakpoints'
 import styles from './DataDescription.module.scss'
 
 export const DataDescription = () => {
+  const { isDesktop } = useBreakpoints()
+
   return (
     <div className={styles.wrapper}>
-      <p className="w-400 t-18">Описание</p>
+      <p className={isDesktop ? 'w-400 t-24' : 'w-400 t-18'}>
+        Описание
+      </p>
 
-      <p className="2-500 t-11">
+      <p className={isDesktop ? 'w-500 t-19-19' : 'w-500 t-11'}>
         3-к квартира по адресу: Курильская ул, д. 5 в Краснооктябрьском
         районе Улучшенная планировка: общая 64.60 / жилая 40.80 / кухня
         10.30 Раздельные комнаты: 13.2 + 10.2 + 17.4 метров Квартира в

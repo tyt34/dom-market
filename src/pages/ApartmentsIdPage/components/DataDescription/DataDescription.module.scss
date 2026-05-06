@@ -7,3 +7,9 @@
   flex-direction: column;
   gap: 8px;
 }
+
+@media (min-width: 1920px) {
+  .wrapper {
+    padding: 44px 48px;
+  }
+}
