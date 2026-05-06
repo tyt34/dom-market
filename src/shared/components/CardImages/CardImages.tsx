@@ -1,13 +1,10 @@
-import {
-  generateRandomMetImages,
-  setSavedImage,
-} from './CardImages.utils'
+import { setSavedImage } from './CardImages.utils'
 import { Favorite } from '@mui/icons-material'
-import { KEY_IMAGES } from '@shared/constants/constants'
 import { Skeleton } from '@mui/material'
 import { useBreakpoints } from '@shared/hooks/useBreakpoints'
 import { useEffect, useState, type FC } from 'react'
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import { AnimatePresence, motion } from 'framer-motion'
 import styles from './CardImages.module.scss'
 
 interface Props {
@@ -25,20 +22,20 @@ export const CardImages: FC<Props> = ({
   const [favorite, setFavorite] = useState<boolean>(false)
   const [images, setImages] = useState<string[]>([])
   const [loaded, setLoaded] = useState<Record<number, boolean>>({})
-  const [modeRandom, setModeRandom] = useState<boolean>(false)
+  // const [modeRandom, setModeRandom] = useState<boolean>(false)
   const [ready, setReady] = useState(false)
 
   const { isDesktop } = useBreakpoints()
 
-  useEffect(() => {
-    const stored = localStorage.getItem(KEY_IMAGES)
+  // useEffect(() => {
+  // const stored = localStorage.getItem(KEY_IMAGES)
 
-    if (stored === 'true') {
-      setModeRandom(true)
-    } else {
-      setModeRandom(false)
-    }
-  }, [])
+  // if (stored === 'true') {
+  //   setModeRandom(true)
+  // } else {
+  //   setModeRandom(false)
+  // }
+  // }, [])
 
   const handleFavorite = () => {
     setFavorite((prev) => !prev)
@@ -49,17 +46,20 @@ export const CardImages: FC<Props> = ({
       setImages([])
       setLoaded({})
       setActive(0)
-      const imgs = modeRandom
-        ? await generateRandomMetImages(count)
-        : await setSavedImage(count)
+      // const imgs = modeRandom
+      //   ? await generateRandomMetImages(count)
+      //   : await setSavedImage(count)
+      const imgs = await setSavedImage(count)
       setImages(imgs)
       if (!ready) {
         setReady(true)
       }
     }
     load()
+
+    // }, [count, modeRandom])
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [count, modeRandom])
+  }, [count])
 
   const handleLoad = (index: number) => {
     setLoaded((prev) => ({ ...prev, [index]: true }))
@@ -96,7 +96,7 @@ export const CardImages: FC<Props> = ({
             />
           )}
 
-          {images.map((src, i) => (
+          {/* {images.map((src, i) => (
             <img
               key={`${src}-${i}`}
               src={src}
@@ -106,7 +106,22 @@ export const CardImages: FC<Props> = ({
               }}
               onLoad={() => handleLoad(i)}
             />
-          ))}
+          ))} */}
+
+          <AnimatePresence mode="wait">
+            {images[active] && (
+              <motion.img
+                key={images[active]}
+                src={images[active]}
+                className={styles.image}
+                initial={{ opacity: 0, x: 10, scale: 0.98 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -10, scale: 0.98 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                onLoad={() => handleLoad(active)}
+              />
+            )}
+          </AnimatePresence>
         </div>
 
         {ready && isFavorite && (

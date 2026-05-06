@@ -7,8 +7,7 @@ import phone from './assets/phone.svg'
 import phone2 from './assets/phone-2.svg'
 import location from './assets/location.svg'
 import vk from './assets/vk.svg'
-import { useEffect, useState } from 'react'
-import { KEY_IMAGES } from '@shared/constants/constants'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '@app/router.constants'
 
@@ -21,7 +20,7 @@ export const Header = () => {
     setIsFavorite((prev) => {
       const next = !prev
 
-      localStorage.setItem(KEY_IMAGES, String(next))
+      // localStorage.setItem(KEY_IMAGES, String(next))
 
       return next
     })
@@ -31,15 +30,15 @@ export const Header = () => {
     navigate(ROUTES.APARTMENTS)
   }
 
-  useEffect(() => {
-    const stored = localStorage.getItem(KEY_IMAGES)
+  // useEffect(() => {
+  //   const stored = localStorage.getItem(KEY_IMAGES)
 
-    if (stored === 'true') {
-      setIsFavorite(true)
-    } else {
-      setIsFavorite(false)
-    }
-  }, [])
+  //   if (stored === 'true') {
+  //     setIsFavorite(true)
+  //   } else {
+  //     setIsFavorite(false)
+  //   }
+  // }, [])
 
   return (
     <div className={styles.wrapper}>
