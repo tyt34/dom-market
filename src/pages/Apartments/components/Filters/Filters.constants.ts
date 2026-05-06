@@ -110,7 +110,7 @@ export const OPTIONS_CITY: Option[] = [
   },
   {
     // value: 'spb',
-    label: 'Санкт-Петербург',
+    label: 'Волжский',
     value: '2',
   },
 ]

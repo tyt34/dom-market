@@ -22,6 +22,7 @@ import { useState } from 'react'
 import type { Option } from '@shared/types/types'
 import setting from './assets/setting.svg'
 import styles from './Filters.module.scss'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export const Filters = observer(() => {
   const { isShowList, changeIsShowList, filters, setFilter } =
@@ -32,7 +33,7 @@ export const Filters = observer(() => {
   const [address, setAddress] = useState<Option>(OPTIONS_ADDRESS[0])
 
   const handleFilter = () => {
-    setIsAllOptions(true)
+    setIsAllOptions((state) => !state)
   }
 
   const handleShowList = () => {
@@ -43,45 +44,54 @@ export const Filters = observer(() => {
     <>
       <div className={styles.wrapper}>
         <div className={styles.filterMobile}>
-          {isAllOptions && (
-            <>
-              <SelectCustomMobile
-                options={OPTIONS_CITY}
-                label="Город"
-                onChange={(value) => {
-                  setFilter('city', value)
-                }}
-                value={filters.city}
-              />
+          <AnimatePresence initial={false}>
+            {isAllOptions && (
+              <motion.div
+                className={styles.filterMobile}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                style={{ overflow: 'hidden' }}
+              >
+                <SelectCustomMobile
+                  options={OPTIONS_CITY}
+                  label="Город"
+                  onChange={(value) => {
+                    setFilter('city', value)
+                  }}
+                  value={filters.city}
+                />
 
-              <SelectCustomMobile
-                options={OPTIONS_TYPE_DEAL}
-                label="Тип сделки"
-                onChange={(value) => {
-                  setFilter('deal', value)
-                }}
-                value={filters.deal}
-              />
+                <SelectCustomMobile
+                  options={OPTIONS_TYPE_DEAL}
+                  label="Тип сделки"
+                  onChange={(value) => {
+                    setFilter('deal', value)
+                  }}
+                  value={filters.deal}
+                />
 
-              <SelectCustomMobile
-                options={OPTIONS_TYPE_PRICE}
-                label="Способ оплаты"
-                onChange={(value) => {
-                  setFilter('price', value)
-                }}
-                value={filters.price}
-              />
+                <SelectCustomMobile
+                  options={OPTIONS_TYPE_PRICE}
+                  label="Способ оплаты"
+                  onChange={(value) => {
+                    setFilter('price', value)
+                  }}
+                  value={filters.price}
+                />
 
-              <SelectCustomMobile
-                options={OPTIONS_SUPER}
-                label="Супер цена"
-                onChange={(value) => {
-                  setFilter('super', value)
-                }}
-                value={filters.super}
-              />
-            </>
-          )}
+                <SelectCustomMobile
+                  options={OPTIONS_SUPER}
+                  label="Супер цена"
+                  onChange={(value) => {
+                    setFilter('super', value)
+                  }}
+                  value={filters.super}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
           <SelectCustomMobile
             options={OPTIONS_HOME}
             label="Вид"
@@ -108,15 +118,15 @@ export const Filters = observer(() => {
             value={filters.rooms}
           />
 
-          {!isAllOptions && (
-            <div className="center">
-              <button onClick={handleFilter}>
-                <span className="white w-700 t-13 underline font-s mt-[12] mb-[18]">
-                  Расширенный фильтр
-                </span>
-              </button>
-            </div>
-          )}
+          <div className="center">
+            <button onClick={handleFilter}>
+              <span className="white w-700 t-13 underline font-s mt-[12] mb-[18]">
+                {!isAllOptions
+                  ? 'Расширенный фильтр'
+                  : 'Скрыть расширенный фильтр'}
+              </span>
+            </button>
+          </div>
 
           <Button
             variant="contained"
@@ -139,9 +149,9 @@ export const Filters = observer(() => {
             <SelectCustomDesktop
               options={OPTIONS_ROOMS_DESKTOP}
               label="Комнаты"
-              value={filters.area}
+              value={filters.rooms}
               onChange={(value) => {
-                setFilter('area', value)
+                setFilter('rooms', value)
               }}
             />
 

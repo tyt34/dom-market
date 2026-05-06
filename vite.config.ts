@@ -6,7 +6,6 @@ import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
   plugins: [react(), UnoCSS(), svgr()],
-  base: '/dom-market/',
   resolve: {
     alias: {
       '@constants': path.resolve(
