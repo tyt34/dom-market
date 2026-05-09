@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import styles from './MenuDesktop.module.scss'
 import favorite from './assets/favorite.svg'
 import favoriteFull from './assets/favorite-full.svg'
 import { Button } from '@mui/material'
+import { MENU_LIST } from '@shared/constants/constants'
+import styles from './MenuDesktop.module.scss'
 
 export const MenuDesktop = () => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
@@ -30,14 +31,16 @@ export const MenuDesktop = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.links}>
-        <a className="white t-15 w-500"> О компании</a>
-        <a className="white t-15 w-500"> Услуги</a>
-        <a className="white t-15 w-500"> Каталог</a>
-        <a className="white t-15 w-500"> Новостройки</a>
-        <a className="white t-15 w-500"> Ипотека</a>
-        <a className="white t-15 w-500"> Строительство</a>
-        <a className="white t-15 w-500"> Отзывы</a>
-        <a className="white t-15 w-500"> Контакты</a>
+        {MENU_LIST.map((item) => {
+          return (
+            <a
+              key={item.id}
+              className="white t-15 w-500"
+            >
+              {item.title}
+            </a>
+          )
+        })}
       </div>
 
       <div className={styles.right}>
