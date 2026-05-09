@@ -15,8 +15,14 @@ export const ApartmentsPage = observer(() => {
       <div className={styles.wrapper}>
         {isShowList && (
           <>
-            <CardList label="Квартиры по суперцене" />
-            <CardList label="Коммерческая недвижимость" />
+            <CardList
+              label="Квартиры по суперцене"
+              storageKey="apartments-1"
+            />
+            <CardList
+              label="Коммерческая недвижимость"
+              storageKey="apartments-2"
+            />
           </>
         )}
         <CallMe />

@@ -10,11 +10,21 @@ import { useBreakpoints } from '@shared/hooks/useBreakpoints'
 
 interface Props {
   label: string
+  storageKey: string
 }
 
-export const CardList: FC<Props> = ({ label }) => {
+export const CardList: FC<Props> = ({ label, storageKey }) => {
   const [units, setUnits] = useState<CardResponse[]>([])
-  const [mode, setMode] = useState<'row' | 'column'>('column')
+
+  const [mode, setMode] = useState<'row' | 'column'>(() => {
+    if (!storageKey) {
+      return 'column'
+    }
+
+    const localValue = localStorage.getItem(storageKey)
+
+    return (localValue as 'row' | 'column') || 'column'
+  })
   const [loading, setLoading] = useState(false)
   const [loadingMore, setLoadingMore] = useState(false)
 
@@ -45,11 +55,6 @@ export const CardList: FC<Props> = ({ label }) => {
     }
   }
 
-  useEffect(() => {
-    const count = isDesktop ? 4 : 1
-    fetchCards(count, 'initial')
-  }, [isDesktop])
-
   const handleClick = () => {
     const count = isDesktop ? 4 : 1
     fetchCards(count, 'more')
@@ -57,9 +62,16 @@ export const CardList: FC<Props> = ({ label }) => {
 
   const handleMode = () => {
     setMode((state) => {
-      return state === 'row' ? 'column' : 'row'
+      const newValue = state === 'row' ? 'column' : 'row'
+      localStorage.setItem(storageKey, newValue)
+      return newValue
     })
   }
+
+  useEffect(() => {
+    const count = isDesktop ? 4 : 1
+    fetchCards(count, 'initial')
+  }, [isDesktop])
 
   return (
     <div className={styles.wrapper}>
