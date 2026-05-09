@@ -1,8 +1,7 @@
 export const INPUT_STYLES = {
   '& .MuiOutlinedInput-root': {
-    backgroundColor: 'rgba(245, 244, 241, 1)', // фон инпута
+    backgroundColor: 'rgba(245, 244, 241, 1)',
     borderRadius: '4px',
-    // height: '60px',
 
     height: {
       xs: '60px',

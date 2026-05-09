@@ -55,7 +55,6 @@ export const Filters = observer(() => {
                   options={OPTIONS_CITY}
                   label="Город"
                   onChange={(value) => {
-                    // setFilter('city', value)
                     const firstAddress =
                       OPTIONS_ADDRESS[value]?.[0]?.value || ''
 
@@ -190,7 +189,6 @@ export const Filters = observer(() => {
               options={OPTIONS_CITY}
               label="Город"
               onChange={(value) => {
-                // setFilter('city', value)
                 const firstAddress =
                   OPTIONS_ADDRESS[value]?.[0]?.value || ''
 
@@ -211,7 +209,6 @@ export const Filters = observer(() => {
 
             <CheckboxFilter
               options={OPTIONS_SUPER}
-              // label="Супер цена"
               onChange={(value) => {
                 setFilter('super', value)
               }}

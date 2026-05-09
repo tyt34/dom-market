@@ -83,30 +83,6 @@
   font-size: 25px;
 }
 
-// Font Weight
-
-.w-400 {
-  font-weight: 400;
-}
-
-.w-500 {
-  font-weight: 500;
-}
-
-.w-600 {
-  font-weight: 600;
-}
-
-.w-700 {
-  font-weight: 600;
-}
-
-// Other
-
-.underline {
-  text-decoration: underline;
-}
-
 @media (min-width: 1920px) {
   .t-7 {
     font-size: 13px;
@@ -147,4 +123,28 @@
   .t-23 {
     font-size: 32px;
   }
+}
+
+// Font Weight
+
+.w-400 {
+  font-weight: 400;
+}
+
+.w-500 {
+  font-weight: 500;
+}
+
+.w-600 {
+  font-weight: 600;
+}
+
+.w-700 {
+  font-weight: 600;
+}
+
+// Other
+
+.underline {
+  text-decoration: underline;
 }

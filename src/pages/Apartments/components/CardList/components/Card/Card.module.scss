@@ -10,7 +10,7 @@
     align-items: stretch;
 
     // Картинка фиксированной ширины слева
-    :global(.card-images), // замени на реальный селектор/класс CardImages
+    :global(.card-images),
     & > *:first-child {
       width: 220px;
       flex-shrink: 0;

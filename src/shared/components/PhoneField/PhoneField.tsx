@@ -37,7 +37,6 @@ export const PhoneField = () => {
             <img
               className="ml-[10]"
               src={phone}
-              // className={styles.mark}
               alt="mark"
             />
           </InputAdornment>

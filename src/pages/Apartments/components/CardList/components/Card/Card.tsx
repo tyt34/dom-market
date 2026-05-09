@@ -7,7 +7,6 @@ import mark from './assets/mark.svg'
 import styles from './Card.module.scss'
 
 interface Props {
-  // count: number
   price: number
   location: string
   amountRooms: number
@@ -21,8 +20,6 @@ interface Props {
 const randomNumber = () => {
   return Math.floor(Math.random() * 100000) + 1
 }
-
-// const count = getRandomInt(1, 8)
 
 export const Card: FC<Props> = ({
   amountFloors,

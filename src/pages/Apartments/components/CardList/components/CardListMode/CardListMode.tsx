@@ -1,7 +1,6 @@
 import ColumnsIcon from './assets/columns.svg?react'
 import RowsIcon from './assets/rows.svg?react'
 import { type FC } from 'react'
-// import styles from './CardListMode.module.scss'
 import { Button } from '@mui/material'
 
 interface Props {
