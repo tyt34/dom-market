@@ -6,4 +6,5 @@ export type FiltersState = {
   deal: string
   price: string
   super: string
+  location: string
 }

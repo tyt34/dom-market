@@ -1,4 +1,5 @@
 import {
+  OPTIONS_ADDRESS,
   OPTIONS_AREA,
   OPTIONS_CITY,
   OPTIONS_HOME,
@@ -20,5 +21,6 @@ export const getFiltersFromUrl = (): FiltersState => {
     deal: params.get('deal') ?? OPTIONS_TYPE_DEAL[0].value,
     price: params.get('price') ?? OPTIONS_TYPE_PRICE[0].value,
     super: params.get('super') ?? OPTIONS_SUPER[0].value,
+    location: params.get('location') ?? OPTIONS_ADDRESS[0].value,
   }
 }

@@ -150,41 +150,47 @@ export const OPTIONS_SUPER: OptionsCheckbox = [
 
 export const OPTIONS_ADDRESS: Option[] = [
   {
-    value: '',
-    label: '',
+    label: 'Волгоград',
+    value: 'vlg-2',
   },
   {
     label: 'Волгоград, проспект Ленина 1',
-    value: 'volgograd-lenina-1',
+    value: 'vlg-1',
   },
   {
     label: 'Волгоград, проспект Ленина 45',
-    value: 'volgograd-lenina-45',
+    value: 'vlg-2',
   },
   {
     label: 'Волгоград, улица Рабоче-Крестьянская 12',
-    value: 'volgograd-raboche-krestyanskaya-12',
+    value: 'vlg-3',
   },
   {
     label: 'Волгоград, улица Рабоче-Крестьянская 68',
-    value: 'volgograd-raboche-krestyanskaya-68',
+    value: 'vlg-4',
   },
   {
     label: 'Волгоград, улица Советская 5',
-    value: 'volgograd-sovetskaya-5',
+    value: 'vlg-5',
   },
   {
     label: 'Волгоград, улица Советская 33',
-    value: 'volgograd-sovetskaya-33',
+    value: 'vlg-6',
   },
-  { label: 'Волгоград, улица Мира 10', value: 'volgograd-mira-10' },
-  { label: 'Волгоград, улица Мира 52', value: 'volgograd-mira-52' },
+  {
+    label: 'Волгоград, улица Мира 10',
+    value: 'vlg-7',
+  },
+  {
+    label: 'Волгоград, улица Мира 52',
+    value: 'vlg-8',
+  },
   {
     label: 'Волгоград, улица Комсомольская 7',
-    value: 'volgograd-komsomolskaya-7',
+    value: 'vlg-9',
   },
   {
     label: 'Волгоград, улица Комсомольская 41',
-    value: 'volgograd-komsomolskaya-41',
+    value: 'vlg-10',
   },
 ]

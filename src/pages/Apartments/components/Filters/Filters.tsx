@@ -19,18 +19,15 @@ import { SelectCustomDesktop } from '@components/SelectCustomDesktop'
 import { SelectCustomMobile } from '@components/SelectCustomMobile'
 import { ToggleGroupCustom } from '@components/ToggleGroupCustom'
 import { useState } from 'react'
-import type { Option } from '@shared/types/types'
 import setting from './assets/setting.svg'
-import styles from './Filters.module.scss'
 import { AnimatePresence, motion } from 'framer-motion'
+import styles from './Filters.module.scss'
 
 export const Filters = observer(() => {
   const { isShowList, changeIsShowList, filters, setFilter } =
     apartmentsStore
 
   const [isAllOptions, setIsAllOptions] = useState<boolean>(false)
-
-  const [address, setAddress] = useState<Option>(OPTIONS_ADDRESS[0])
 
   const handleFilter = () => {
     setIsAllOptions((state) => !state)
@@ -61,6 +58,15 @@ export const Filters = observer(() => {
                     setFilter('city', value)
                   }}
                   value={filters.city}
+                />
+
+                <AutocompleteCustom
+                  options={OPTIONS_ADDRESS}
+                  label="Поиск по адресу"
+                  value={filters.location}
+                  onChange={(value) => {
+                    setFilter('location', value)
+                  }}
                 />
 
                 <SelectCustomMobile
@@ -207,9 +213,9 @@ export const Filters = observer(() => {
             <AutocompleteCustom
               options={OPTIONS_ADDRESS}
               label="Поиск по адресу"
-              value={address}
+              value={filters.location}
               onChange={(value) => {
-                setAddress(value)
+                setFilter('location', value)
               }}
             />
           </div>

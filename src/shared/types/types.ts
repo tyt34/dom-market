@@ -1,13 +1,12 @@
 export type Option = {
+  /** используется как id */
   value: string
   label: string
-  // id: string
 }
 
 export type OptionBoolean = {
   value: boolean
   label: string
-  // id: string
 }
 
 export type OptionImage = {

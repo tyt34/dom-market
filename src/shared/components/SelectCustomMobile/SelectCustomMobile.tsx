@@ -1,7 +1,7 @@
 import { FormControl, MenuItem, Select } from '@mui/material'
 import { useState, type FC } from 'react'
 import type { Option } from '@shared/types/types'
-import arrow from './assets/arrow.svg'
+import arrow from '@shared/assets/icons/arrow.svg'
 
 import styles from './SelectCustomMobile.module.scss'
 
