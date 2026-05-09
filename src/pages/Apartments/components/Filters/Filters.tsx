@@ -55,13 +55,18 @@ export const Filters = observer(() => {
                   options={OPTIONS_CITY}
                   label="Город"
                   onChange={(value) => {
+                    // setFilter('city', value)
+                    const firstAddress =
+                      OPTIONS_ADDRESS[value]?.[0]?.value || ''
+
                     setFilter('city', value)
+                    setFilter('location', firstAddress)
                   }}
                   value={filters.city}
                 />
 
                 <AutocompleteCustom
-                  options={OPTIONS_ADDRESS}
+                  options={OPTIONS_ADDRESS[filters.city] || []}
                   label="Поиск по адресу"
                   value={filters.location}
                   onChange={(value) => {
@@ -185,7 +190,12 @@ export const Filters = observer(() => {
               options={OPTIONS_CITY}
               label="Город"
               onChange={(value) => {
+                // setFilter('city', value)
+                const firstAddress =
+                  OPTIONS_ADDRESS[value]?.[0]?.value || ''
+
                 setFilter('city', value)
+                setFilter('location', firstAddress)
               }}
               value={filters.city}
             />
@@ -211,7 +221,7 @@ export const Filters = observer(() => {
 
           <div className={`${styles.row} mt-[23]`}>
             <AutocompleteCustom
-              options={OPTIONS_ADDRESS}
+              options={OPTIONS_ADDRESS[filters.city] || []}
               label="Поиск по адресу"
               value={filters.location}
               onChange={(value) => {
