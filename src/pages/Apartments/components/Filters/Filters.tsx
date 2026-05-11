@@ -21,11 +21,14 @@ import { ToggleGroupCustom } from '@components/ToggleGroupCustom'
 import { useState } from 'react'
 import setting from './assets/setting.svg'
 import { AnimatePresence, motion } from 'framer-motion'
+import { settingsStore } from '@widgets/Settings/settingsStore'
+import defaultBackground from './assets/background.png'
 import styles from './Filters.module.scss'
 
 export const Filters = observer(() => {
   const { isShowList, changeIsShowList, filters, setFilter } =
     apartmentsStore
+  const { backgroundImage } = settingsStore
 
   const [isAllOptions, setIsAllOptions] = useState<boolean>(false)
 
@@ -37,9 +40,20 @@ export const Filters = observer(() => {
     changeIsShowList(!isShowList)
   }
 
+  console.log({ backgroundImage })
+
   return (
     <>
-      <div className={styles.wrapper}>
+      <div
+        className={styles.wrapper}
+        style={
+          {
+            '--bg-image': backgroundImage
+              ? `url(${backgroundImage})`
+              : `url(${defaultBackground})`,
+          } as React.CSSProperties
+        }
+      >
         <div className={styles.filterMobile}>
           <AnimatePresence initial={false}>
             {isAllOptions && (

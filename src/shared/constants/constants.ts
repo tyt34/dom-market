@@ -9,4 +9,5 @@ export const MENU_LIST = [
   { id: 6, title: 'Строительство' },
   { id: 7, title: 'Отзывы' },
   { id: 8, title: 'Контакты' },
+  { id: 'settings', title: 'Настройки', isButton: true },
 ]

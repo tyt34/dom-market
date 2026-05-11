@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import favorite from './assets/favorite.svg'
 import favoriteFull from './assets/favorite-full.svg'
 import { Button } from '@mui/material'
 import { MENU_LIST } from '@shared/constants/constants'
 import styles from './MenuDesktop.module.scss'
+import { settingsStore } from '@widgets/Settings/settingsStore'
 
 export const MenuDesktop = () => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
+  const { setIsShow } = settingsStore
 
   const handleFavorite = () => {
     setIsFavorite((prev) => {
@@ -28,14 +30,32 @@ export const MenuDesktop = () => {
   //   }
   // }, [])
 
+  const handleSettings = (event: MouseEvent) => {
+    event.preventDefault()
+    setIsShow(true)
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.links}>
         {MENU_LIST.map((item) => {
+          if (item.id === 'settings') {
+            return (
+              <a
+                key={item.id}
+                className="white t-15 w-500"
+                onClick={handleSettings}
+                href="/"
+              >
+                {item.title}
+              </a>
+            )
+          }
           return (
             <a
               key={item.id}
               className="white t-15 w-500"
+              href="/"
             >
               {item.title}
             </a>

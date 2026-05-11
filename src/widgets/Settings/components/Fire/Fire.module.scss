@@ -1,0 +1,143 @@
+$brightness: 1.6;
+$contrast: 10;
+$blur: 18px;
+
+$sphere-size: 100px;
+$intensity: 0.6;
+
+// $back-color: #000;
+$back-color: #000;
+$main-color: #ff9977;
+$core-color: #ddd;
+
+.zoneWrap {
+  padding: 80px;
+  overflow: hidden;
+  background: $back-color;
+  filter: brightness($brightness) contrast($contrast);
+
+  position: absolute;
+  inset: -40px;
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+.zone {
+  position: relative;
+  width: $sphere-size;
+  height: $sphere-size;
+  margin: 30px auto;
+  filter: blur($blur);
+}
+
+.magnets {
+  background: $back-color;
+  white-space: nowrap;
+  position: relative;
+
+  div {
+    position: absolute;
+    display: block;
+    border-radius: 30%;
+    background: transparent;
+
+    &:nth-child(1) {
+      top: 0;
+      width: 80px;
+      height: 30px;
+      box-shadow: 0 0 90px $main-color;
+      animation: clockwise 3.14s linear infinite;
+    }
+
+    &:nth-child(2) {
+      top: 0;
+      left: -20px;
+      width: 80px;
+      height: 30px;
+      box-shadow: 0 0 70px $main-color;
+      animation: counter-clockwise 4s linear infinite;
+    }
+
+    &:nth-child(3) {
+      top: 0;
+      left: 20px;
+      width: 80px;
+      height: 30px;
+      box-shadow: 0 0 70px $main-color;
+      animation: clockwise 1.9s linear infinite;
+    }
+
+    &:nth-child(4) {
+      top: -15px;
+      width: 80px;
+      height: 30px;
+      box-shadow: 0 0 800px $main-color;
+      animation: counter-clockwise 2.71s linear infinite;
+    }
+
+    &:nth-child(5) {
+      width: 10px;
+      height: 10px;
+      top: 20px;
+      left: -65px;
+      box-shadow: 0 0 50px $main-color;
+      animation: counter-clockwise 3.71s linear infinite;
+    }
+
+    &:nth-child(6) {
+      width: 10px;
+      height: 10px;
+      top: 20px;
+      left: 65px;
+      box-shadow: 0 0 50px $main-color;
+      animation: clockwise 4.71s linear infinite;
+    }
+  }
+}
+
+.sphere {
+  background: $back-color;
+  position: relative;
+}
+
+.core {
+  position: absolute;
+  width: $sphere-size;
+  height: $sphere-size;
+  border-radius: 50%;
+  background: rgba($main-color, $intensity);
+  border-bottom: 15px solid $core-color;
+}
+
+/* animations */
+
+@keyframes clockwise {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(-40px, -40px);
+  }
+  50% {
+    transform: translate(0px, -80px);
+  }
+  75% {
+    transform: translate(40px, -40px);
+  }
+}
+
+@keyframes counter-clockwise {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(40px, -40px);
+  }
+  50% {
+    transform: translate(0px, -80px);
+  }
+  75% {
+    transform: translate(-40px, -40px);
+  }
+}

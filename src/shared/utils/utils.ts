@@ -21,3 +21,29 @@ export const getRandomInt = (min: number, max: number) => {
 export const formatNumber = (value: number) => {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }
+
+/**
+ * Преобразует файл (File) в строку формата Base64.
+ *
+ * Используется для загрузки изображений и последующего хранения
+ * (например, в IndexedDB или состоянии приложения).
+ *
+ * @param file - файл, который нужно преобразовать
+ * @returns Promise со строкой Base64
+ *
+ * @example
+ * const base64 = await fileToBase64(file)
+ */
+export const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+
+    reader.readAsDataURL(file)
+
+    reader.onload = () => {
+      resolve(reader.result as string)
+    }
+
+    reader.onerror = reject
+  })
+}
